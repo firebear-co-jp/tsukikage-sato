@@ -1,41 +1,42 @@
 import Link from 'next/link';
+import { animeImages } from '@/config/images';
 
 export default function PlansSection() {
   const plans = [
     {
-      id: 'romantic',
+      id: 'romantic-special',
       title: '記念日プラン',
       subtitle: '特別な日を彩る',
       description: '大切な記念日を月影の郷でお過ごしください。露天風呂付き客室と特別な会席料理で、思い出に残る時間をお届けします。',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.romanticCouple,
       price: '45,000',
       priceNote: '〜（2名様1室）',
       features: ['露天風呂付き客室', '特別会席料理', '記念日デコレーション', 'シャンパンサービス'],
-      href: '/plans/romantic',
+      href: '/plans/romantic-special',
       category: '記念日',
     },
     {
-      id: 'gourmet',
+      id: 'gourmet-seasonal',
       title: 'グルメプラン',
       subtitle: '四季の味覚を堪能',
       description: '地元の旬の食材を使用した会席料理を存分にお楽しみください。料理長が心を込めて作る一品一品が、日本の四季をお届けします。',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.gourmetDining,
       price: '38,000',
       priceNote: '〜（2名様1室）',
       features: ['渓谷を望む和室', '季節の会席料理', '地産地消メニュー', '個室での食事'],
-      href: '/plans/gourmet',
+      href: '/plans/gourmet-seasonal',
       category: 'グルメ',
     },
     {
-      id: 'relax',
+      id: 'relax-onsen',
       title: '癒しプラン',
       subtitle: '温泉で心身をリフレッシュ',
       description: '自家源泉かけ流しの温泉で、日々の疲れを癒してください。渓谷を望む露天風呂で、心身ともにリフレッシュできます。',
-      image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.healingOnsen,
       price: '32,000',
       priceNote: '〜（2名様1室）',
       features: ['渓谷を望む和室', '貸切風呂利用', '温泉効能説明', 'リラクゼーション'],
-      href: '/plans/relax',
+      href: '/plans/relax-onsen',
       category: '癒し',
     },
   ];

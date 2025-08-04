@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { animeImages, fallbackImages } from '@/config/images';
 
 export default function OnsenPage() {
   const onsenFeatures = [
@@ -24,19 +25,22 @@ export default function OnsenPage() {
     {
       name: '大浴場',
       description: '広々とした空間で、ゆったりと温泉をお楽しみいただけます。',
-      image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.onsen.largePublicBath,
+      fallback: fallbackImages.onsen,
       features: ['広々とした空間', '渓谷を望む景色', '男女別浴場'],
     },
     {
       name: '露天風呂',
       description: '自然の中に佇む露天風呂で、四季の移ろいを感じながら温泉をお楽しみください。',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.onsen.outdoorView,
+      fallback: fallbackImages.ryokan,
       features: ['自然の中の露天風呂', '四季の景色', '星空を眺める'],
     },
     {
       name: '貸切風呂',
       description: 'ご家族やカップルでゆっくりとお楽しみいただける貸切風呂です。',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.onsen.privateBath,
+      fallback: fallbackImages.cuisine,
       features: ['完全プライベート', '予約制', '追加料金不要'],
     },
   ];
@@ -63,12 +67,12 @@ export default function OnsenPage() {
       <Header />
       
       {/* ヒーローセクション */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
+      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)',
+              backgroundImage: `url(${animeImages.onsen.valleyView})`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-sumi-900/60 via-sumi-900/40 to-transparent" />
@@ -165,7 +169,7 @@ export default function OnsenPage() {
               <div
                 className="aspect-[4/3] rounded-2xl bg-cover bg-center bg-no-repeat shadow-lg"
                 style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)',
+                  backgroundImage: `url(${animeImages.onsen.relaxation})`,
                 }}
               />
               <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-lg">

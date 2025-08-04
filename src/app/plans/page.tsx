@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReservationWidget from '@/components/ReservationWidget';
+import { animeImages, fallbackImages } from '@/config/images';
 
 export default function PlansPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -23,7 +24,8 @@ export default function PlansPage() {
       title: '記念日特別プラン',
       subtitle: '特別な日を彩る',
       description: '大切な記念日を月影の郷でお過ごしください。露天風呂付き客室と特別な会席料理で、思い出に残る時間をお届けします。',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.romanticCouple,
+      fallback: fallbackImages.ryokan,
       price: '45,000',
       priceNote: '〜（2名様1室）',
       features: ['露天風呂付き客室', '特別会席料理', '記念日デコレーション', 'シャンパンサービス'],
@@ -36,7 +38,8 @@ export default function PlansPage() {
       title: '季節の会席プラン',
       subtitle: '四季の味覚を堪能',
       description: '地元の旬の食材を使用した会席料理を存分にお楽しみください。料理長が心を込めて作る一品一品が、日本の四季をお届けします。',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.gourmetDining,
+      fallback: fallbackImages.cuisine,
       price: '38,000',
       priceNote: '〜（2名様1室）',
       features: ['渓谷を望む和室', '季節の会席料理', '地産地消メニュー', '個室での食事'],
@@ -48,7 +51,8 @@ export default function PlansPage() {
       title: '温泉癒しプラン',
       subtitle: '温泉で心身をリフレッシュ',
       description: '自家源泉かけ流しの温泉で、日々の疲れを癒してください。渓谷を望む露天風呂で、心身ともにリフレッシュできます。',
-      image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.healingOnsen,
+      fallback: fallbackImages.onsen,
       price: '32,000',
       priceNote: '〜（2名様1室）',
       features: ['渓谷を望む和室', '貸切風呂利用', '温泉効能説明', 'リラクゼーション'],
@@ -60,7 +64,8 @@ export default function PlansPage() {
       title: 'ファミリープラン',
       subtitle: '家族で楽しむ温泉旅',
       description: 'お子様からご年配の方まで、家族全員でお楽しみいただけるプランです。安心・安全な環境で、思い出作りをお手伝いします。',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.familyHappy,
+      fallback: fallbackImages.ryokan,
       price: '35,000',
       priceNote: '〜（4名様1室）',
       features: ['和洋室', 'お子様メニュー', '貸切風呂利用', '家族向けアメニティ'],
@@ -72,7 +77,8 @@ export default function PlansPage() {
       title: '一人旅癒しプラン',
       subtitle: '自分だけの贅沢時間',
       description: '一人旅だからこそ味わえる贅沢な時間をお過ごしください。静寂の中で自分を見つめ直す、特別な体験をお届けします。',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.soloTraveler,
+      fallback: fallbackImages.ryokan,
       price: '28,000',
       priceNote: '〜（1名様）',
       features: ['渓谷を望む和室', '一人用会席料理', '貸切風呂利用', '読書スペース'],
@@ -84,7 +90,8 @@ export default function PlansPage() {
       title: 'プレミアムスイートプラン',
       subtitle: '最高級の贅沢体験',
       description: '月影の郷の最高級プラン。露天風呂付きスイートルームと、料理長が心を込めて作る特別な会席料理で、至福の時間をお過ごしください。',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.plans.premiumLuxury,
+      fallback: fallbackImages.ryokan,
       price: '65,000',
       priceNote: '〜（2名様1室）',
       features: ['露天風呂付きスイート', '特別会席料理', '専用コンシェルジュ', 'シャンパンサービス'],
@@ -103,12 +110,12 @@ export default function PlansPage() {
       <Header />
       
       {/* ヒーローセクション */}
-      <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
+      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)',
+              backgroundImage: `url(${animeImages.plans.romanticCouple})`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-sumi-900/60 via-sumi-900/40 to-transparent" />

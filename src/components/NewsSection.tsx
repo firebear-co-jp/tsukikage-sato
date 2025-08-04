@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { animeImages } from '@/config/images';
 
 export default function NewsSection() {
   const news = [
@@ -33,6 +34,34 @@ export default function NewsSection() {
       title: '7月の旬の食材',
       excerpt: '7月は夏野菜が美味しい季節です。当館では、地元で採れた新鮮な夏野菜を使用した...',
       href: '/news/4',
+    },
+  ];
+
+  // Instagram投稿データ
+  const instagramPosts = [
+    {
+      id: 1,
+      image: animeImages.instagram.onsenSunset,
+      title: '温泉の夕暮れ',
+      likes: '1.2k',
+    },
+    {
+      id: 2,
+      image: animeImages.instagram.kaisekiDish,
+      title: '会席料理',
+      likes: '856',
+    },
+    {
+      id: 3,
+      image: animeImages.instagram.tatamiMorning,
+      title: '和室の朝',
+      likes: '1.5k',
+    },
+    {
+      id: 4,
+      image: animeImages.instagram.gardenSeasonal,
+      title: '庭園の四季',
+      likes: '2.1k',
     },
   ];
 
@@ -137,15 +166,36 @@ export default function NewsSection() {
             </p>
           </div>
 
-          {/* Instagram埋め込み（仮のプレースホルダー） */}
+          {/* Instagram投稿 */}
           <div className="bg-white rounded-2xl p-8 shadow-lg">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[1, 2, 3, 4].map((i) => (
+              {instagramPosts.map((post) => (
                 <div
-                  key={i}
-                  className="aspect-square bg-gradient-to-br from-kincha-200 to-cha-200 rounded-lg flex items-center justify-center"
+                  key={post.id}
+                  className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer"
                 >
-                  <span className="text-sumi-600 text-sm">Instagram投稿 {i}</span>
+                  <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat group-hover:scale-110 transition-transform duration-700"
+                    style={{
+                      backgroundImage: `url(${post.image})`,
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-sumi-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* いいね数 */}
+                  <div className="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex items-center space-x-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
+                      <span className="text-red-500 text-sm">❤️</span>
+                      <span className="text-sumi-700 text-xs font-medium">{post.likes}</span>
+                    </div>
+                  </div>
+
+                  {/* タイトル */}
+                  <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="bg-sumi-900/80 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full">
+                      {post.title}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>

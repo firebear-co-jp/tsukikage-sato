@@ -2,22 +2,38 @@
 
 import { useState, useEffect } from 'react';
 import ReservationWidget from './ReservationWidget';
+import { animeImages, fallbackImages } from '@/config/images';
 
 export default function HeroSection() {
   const [currentImage, setCurrentImage] = useState(0);
+  const [imageErrors, setImageErrors] = useState<{ [key: number]: boolean }>({});
+
+  const handleImageError = (index: number) => {
+    setImageErrors(prev => ({ ...prev, [index]: true }));
+  };
+
+  const getImageSrc = (index: number) => {
+    if (imageErrors[index]) {
+      return heroImages[index].fallback;
+    }
+    return heroImages[index].src;
+  };
   
   const heroImages = [
     {
-      src: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: animeImages.main.onsenOutdoor,
       alt: '渓谷の露天風呂',
+      fallback: fallbackImages.onsen,
     },
     {
-      src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: animeImages.main.ryokanNight,
       alt: '和室の夕暮れ',
+      fallback: fallbackImages.ryokan,
     },
     {
-      src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: animeImages.main.kaisekiMeal,
       alt: '会席料理',
+      fallback: fallbackImages.cuisine,
     },
   ];
 
@@ -43,8 +59,9 @@ export default function HeroSection() {
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: `url(${image.src})`,
+                backgroundImage: `url(${getImageSrc(index)})`,
               }}
+              onError={() => handleImageError(index)}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-sumi-900/60 via-sumi-900/40 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-sumi-900/80 via-transparent to-transparent" />

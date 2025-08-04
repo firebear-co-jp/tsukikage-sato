@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { animeImages } from '@/config/images';
 
 export default function FeaturesSection() {
   const features = [
@@ -7,7 +8,7 @@ export default function FeaturesSection() {
       title: '温泉',
       subtitle: '自家源泉かけ流し',
       description: '渓谷を望む露天風呂で、千年の湯に心を癒されてください。自家源泉かけ流しの温泉は、疲れを癒し、心身をリフレッシュさせます。',
-      image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.onsen.outdoorView,
       href: '/onsen',
       features: ['自家源泉かけ流し', '渓谷を望む露天風呂', '貸切風呂あり'],
     },
@@ -16,7 +17,7 @@ export default function FeaturesSection() {
       title: 'お料理',
       subtitle: '四季折々の会席料理',
       description: '地元の旬の食材を使用した会席料理。料理長が心を込めて作る一品一品が、日本の四季と伝統の味わいをお届けします。',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.cuisine.kaisekiCourse,
       href: '/cuisine',
       features: ['地産地消', '季節の会席料理', '個室での食事'],
     },
@@ -25,7 +26,7 @@ export default function FeaturesSection() {
       title: 'お部屋',
       subtitle: '静寂の贅沢空間',
       description: '渓谷の景色を望む和室で、日本の伝統的な空間をお楽しみください。露天風呂付き客室や和洋室など、お好みに合わせてお選びいただけます。',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: animeImages.rooms.tatamiInterior,
       href: '/rooms',
       features: ['渓谷を望む和室', '露天風呂付き客室', '和洋室'],
     },

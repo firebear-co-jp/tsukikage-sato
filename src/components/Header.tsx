@@ -43,16 +43,24 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative w-12 h-12">
               <div className="absolute inset-0 bg-gradient-to-br from-kincha-400 to-cha-500 rounded-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute inset-2 bg-kincha-50 rounded-full flex items-center justify-center">
-                <span className="text-sumi-900 font-serif-jp text-lg font-medium">月</span>
+              <div className={`absolute inset-2 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                isScrolled ? 'bg-white' : 'bg-kincha-50'
+              }`}>
+                <span className={`font-serif-jp text-lg font-medium transition-colors duration-300 ${
+                  isScrolled ? 'text-sumi-900' : 'text-sumi-900'
+                }`}>月</span>
               </div>
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-serif-jp text-xl font-medium text-sumi-900">
-                渓谷の湯 旅館
-              </h1>
-              <p className="font-serif-jp text-sm text-sumi-600 -mt-1">
+              <h1 className={`font-serif-jp text-xl font-medium transition-colors duration-300 ${
+                isScrolled ? 'text-sumi-900' : 'text-white'
+              }`}>
                 月影の郷
+              </h1>
+              <p className={`font-serif-jp text-sm -mt-1 transition-colors duration-300 ${
+                isScrolled ? 'text-sumi-600' : 'text-kincha-100'
+              }`}>
+                渓谷の湯 旅館
               </p>
             </div>
           </Link>
@@ -63,10 +71,16 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-sans-jp text-sm text-sumi-700 hover:text-sumi-900 transition-colors duration-200 relative group"
+                className={`font-sans-jp text-sm transition-colors duration-200 relative group ${
+                  isScrolled 
+                    ? 'text-sumi-700 hover:text-sumi-900' 
+                    : 'text-white hover:text-kincha-100'
+                }`}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cha-400 group-hover:w-full transition-all duration-300"></span>
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
+                  isScrolled ? 'bg-cha-400' : 'bg-white'
+                }`}></span>
               </Link>
             ))}
           </nav>
@@ -74,10 +88,14 @@ export default function Header() {
           {/* 右側のボタン群 */}
           <div className="flex items-center space-x-4">
             {/* 言語切り替え */}
-            <button className="hidden md:flex items-center space-x-1 text-sm text-sumi-600 hover:text-sumi-900 transition-colors duration-200">
+            <button className={`hidden md:flex items-center space-x-1 text-sm transition-colors duration-200 ${
+              isScrolled 
+                ? 'text-sumi-600 hover:text-sumi-900' 
+                : 'text-white hover:text-kincha-100'
+            }`}>
               <span className="font-medium">JP</span>
-              <span className="text-sumi-400">|</span>
-              <span className="text-sumi-400">EN</span>
+              <span className={isScrolled ? 'text-sumi-400' : 'text-kincha-200'}>|</span>
+              <span className={isScrolled ? 'text-sumi-400' : 'text-kincha-200'}>EN</span>
             </button>
 
             {/* 予約ボタン */}
@@ -91,7 +109,11 @@ export default function Header() {
             {/* ハンバーガーメニュー */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-sumi-700 hover:text-sumi-900 transition-colors duration-200"
+              className={`lg:hidden p-2 transition-colors duration-200 ${
+                isScrolled 
+                  ? 'text-sumi-700 hover:text-sumi-900' 
+                  : 'text-white hover:text-kincha-100'
+              }`}
               aria-label="メニューを開く"
             >
               <div className="w-6 h-6 flex flex-col justify-center items-center">
