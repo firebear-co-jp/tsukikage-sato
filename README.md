@@ -21,7 +21,7 @@
 - **言語**: TypeScript
 - **スタイリング**: Tailwind CSS
 - **フォント**: Noto Serif JP, Noto Sans JP (Google Fonts)
-- **デプロイ**: Vercel (推奨)
+- **デプロイ**: Netlify (推奨)
 
 ## 📁 プロジェクト構造
 
@@ -55,8 +55,8 @@ tsukikage-sato/
 
 ### 1. リポジトリのクローン
 ```bash
-git clone <repository-url>
-cd tsukikage-sato
+git clone https://github.com/firebear-co-jp/Ryokan-HP.git
+cd Ryokan-HP
 ```
 
 ### 2. 依存関係のインストール
@@ -165,13 +165,16 @@ npm start
 
 ## 🚀 デプロイ
 
-### Vercel（推奨）
-1. Vercelアカウントを作成
+### Netlify（推奨）
+1. Netlifyアカウントを作成
 2. GitHubリポジトリと連携
 3. 自動デプロイの設定
+   - Build command: `npm run build`
+   - Publish directory: `.next`
+   - Node version: 18.x
 
 ### その他のプラットフォーム
-- Netlify
+- Vercel
 - AWS Amplify
 - その他のVPS
 
