@@ -1,26 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fefcf8;
+  --foreground: #1a1a1a;
+  --sumi-50: #f8f9fa;
+  --sumi-100: #f1f3f4;
+  --sumi-200: #e8eaed;
+  --sumi-300: #dadce0;
+  --sumi-400: #bdc1c6;
+  --sumi-500: #9aa0a6;
+  --sumi-600: #80868b;
+  --sumi-700: #5f6368;
+  --sumi-800: #3c4043;
+  --sumi-900: #202124;
+  --sumi-950: #1a1a1a;
+  --kincha-50: #fefcf8;
+  --kincha-100: #fdf8f0;
+  --kincha-200: #faf0d8;
+  --kincha-300: #f5e4b8;
+  --kincha-400: #eed494;
+  --kincha-500: #e4c06e;
+  --kincha-600: #d8a94a;
+  --kincha-700: #c08d3a;
+  --kincha-800: #9e7132;
+  --kincha-900: #805e2f;
+  --kincha-950: #453115;
+  --cha-50: #fdfcf9;
+  --cha-100: #faf7f2;
+  --cha-200: #f4ede0;
+  --cha-300: #ecdfc8;
+  --cha-400: #e1cca8;
+  --cha-500: #d4b583;
+  --cha-600: #c69d5f;
+  --cha-700: #b17f42;
+  --cha-800: #926738;
+  --cha-900: #775530;
+  --cha-950: #412c1a;
+  --hi-500: #ef4444;
+  --ai-500: #3b82f6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Noto Sans JP', sans-serif;
+  --font-serif: 'Noto Serif JP', serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a1a1a;
+    --foreground: #fefcf8;
   }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 和モダンなスクロールバー */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kincha-50);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cha-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cha-400);
+}
+
+/* 選択テキストのスタイル */
+::selection {
+  background: var(--cha-200);
+  color: var(--sumi-900);
+}
+
+/* フォーカス時のアウトライン */
+*:focus {
+  outline: 2px solid var(--ai-500);
+  outline-offset: 2px;
+}
+
+/* 和紙のようなテクスチャ効果 */
+.texture-paper {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* 縦書きテキスト用 */
+.text-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* 和風のボーダー */
+.border-wa {
+  border-image: linear-gradient(to right, var(--cha-300), var(--kincha-300)) 1;
+}
+
+/* 湯けむり効果 */
+.steam-effect {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  backdrop-filter: blur(10px);
 }

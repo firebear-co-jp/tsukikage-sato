@@ -1,36 +1,193 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 渓谷の湯 旅館『月影の郷』公式ホームページ
 
-## Getting Started
+創業100年を迎える老舗旅館「渓谷の湯 旅館『月影の郷』（つきかげのさと）」の公式ホームページです。
 
-First, run the development server:
+## 🏮 プロジェクト概要
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+古くなったデザインと分かりにくい情報構造を刷新し、旅館が持つ独自の魅力（温泉、料理、景色）を情緒的に伝えることで、新たな顧客層の獲得と公式サイトからの直接予約率向上を目指しています。
+
+### コンセプト
+「静寂の贅沢、一期一会のおもてなし」
+
+### デザインコンセプト
+- **和モダン**: 伝統的な和のデザインと現代的でクリーンなUI/UXを融合
+- **情緒的な写真**: プロが撮影した、光と影が美しい写真を全面的に使用
+- **タイポグラフィ**: 明朝体（Noto Serif JP）で落ち着きと品格を表現
+- **配色**: 墨色、生成り色、茶系のアースカラーを基調とし、深紅や藍色をアクセントに使用
+
+## 🛠️ 技術スタック
+
+- **フレームワーク**: Next.js 15 (App Router)
+- **言語**: TypeScript
+- **スタイリング**: Tailwind CSS
+- **フォント**: Noto Serif JP, Noto Sans JP (Google Fonts)
+- **デプロイ**: Vercel (推奨)
+
+## 📁 プロジェクト構造
+
+```
+tsukikage-sato/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── page.tsx           # トップページ
+│   │   ├── onsen/             # 温泉ページ
+│   │   ├── plans/             # 宿泊プラン一覧ページ
+│   │   ├── layout.tsx         # ルートレイアウト
+│   │   └── globals.css        # グローバルスタイル
+│   └── components/            # 共通コンポーネント
+│       ├── Header.tsx         # ヘッダー
+│       ├── Footer.tsx         # フッター
+│       ├── HeroSection.tsx    # ヒーローセクション
+│       ├── FeaturesSection.tsx # 魅力紹介セクション
+│       ├── PlansSection.tsx   # プラン紹介セクション
+│       ├── NewsSection.tsx    # お知らせセクション
+│       └── ReservationWidget.tsx # 予約ウィジェット
+├── public/                    # 静的ファイル
+├── tailwind.config.ts         # Tailwind CSS設定
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 セットアップ手順
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 前提条件
+- Node.js 18.18.0 以上
+- npm または yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. リポジトリのクローン
+```bash
+git clone <repository-url>
+cd tsukikage-sato
+```
 
-## Learn More
+### 2. 依存関係のインストール
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. 開発サーバーの起動
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いて確認してください。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. ビルド（本番用）
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+### 5. 本番サーバーの起動
+```bash
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 デザインシステム
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### カラーパレット
+- **墨色 (sumi)**: メインテキスト、背景
+- **生成り色 (kincha)**: アクセント、背景
+- **茶色 (cha)**: プライマリカラー、ボタン
+- **緋色 (hi)**: アクセント、警告
+- **藍色 (ai)**: リンク、情報
+
+### フォント
+- **日本語**: Noto Serif JP (明朝体), Noto Sans JP (ゴシック体)
+- **英語**: Garamond (セリフ体), Inter (サンセリフ体)
+
+### アニメーション
+- フェードイン、スライドアップ、ホバーエフェクト
+- スムーズなトランジション
+
+## 📱 レスポンシブデザイン
+
+- **モバイルファースト** アプローチ
+- **ブレークポイント**: sm (640px), md (768px), lg (1024px), xl (1280px)
+- **タッチフレンドリー** なインターフェース
+
+## 🔧 主要機能
+
+### 実装済み機能
+- ✅ トップページ（ヒーローセクション、魅力紹介、プラン紹介、お知らせ）
+- ✅ 温泉ページ（泉質・効能、施設紹介、利用案内）
+- ✅ 宿泊プラン一覧ページ（カテゴリフィルター、プラン比較）
+- ✅ 空室検索・予約ウィジェット
+- ✅ レスポンシブヘッダー・フッター
+- ✅ 和モダンデザインシステム
+
+### 今後の実装予定
+- 🔄 お料理ページ
+- 🔄 お部屋ページ
+- 🔄 お問い合わせページ
+- 🔄 交通案内ページ
+- 🔄 多言語対応（英語）
+- 🔄 CMS連携（お知らせ更新機能）
+
+## 📄 ページ構成
+
+### 実装済みページ
+1. **トップページ** (`/`) - 旅館の魅力をダイジェスト紹介
+2. **温泉ページ** (`/onsen`) - 温泉の詳細情報
+3. **宿泊プラン一覧** (`/plans`) - プラン比較・検索
+
+### 予定ページ
+4. **月影の郷の魅力** (`/concept`) - 旅館のコンセプト
+5. **お料理** (`/cuisine`) - 会席料理の紹介
+6. **お部屋** (`/rooms`) - 客室タイプの紹介
+7. **館内のご案内** (`/facilities`) - 施設案内
+8. **周辺観光** (`/sightseeing`) - 観光情報
+9. **交通案内** (`/access`) - アクセス情報
+10. **お知らせ** (`/news`) - 最新情報
+11. **お問い合わせ** (`/contact`) - 問い合わせフォーム
+
+## 🎯 SEO・パフォーマンス
+
+### SEO対策
+- メタデータの最適化
+- 構造化データの実装
+- 画像のalt属性設定
+- セマンティックHTML
+
+### パフォーマンス
+- Next.js App Routerによる最適化
+- 画像の最適化
+- フォントの最適化
+- コード分割
+
+## 🔗 外部連携
+
+### 予約システム
+- 外部予約エンジン（TEMAIRAZU, ねっぱん！, Beds24等）との連携
+- 空室検索ウィジェットの埋め込み
+
+### SNS連携
+- Instagramギャラリーの埋め込み
+- SNSシェアボタン
+
+## 🚀 デプロイ
+
+### Vercel（推奨）
+1. Vercelアカウントを作成
+2. GitHubリポジトリと連携
+3. 自動デプロイの設定
+
+### その他のプラットフォーム
+- Netlify
+- AWS Amplify
+- その他のVPS
+
+## 📞 サポート
+
+ご質問やご要望がございましたら、お気軽にお問い合わせください。
+
+- **電話**: 000-0000-0000
+- **受付時間**: 9:00〜21:00
+
+## 📄 ライセンス
+
+このプロジェクトは渓谷の湯 旅館『月影の郷』の所有物です。
+
+---
+
+**渓谷の湯 旅館『月影の郷』**
+〒000-0000 ○○県○○市○○町○○-○○
+TEL: 000-0000-0000

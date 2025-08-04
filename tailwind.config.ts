@@ -1,0 +1,126 @@
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // 和モダンカラーパレット
+        'sumi': {
+          50: '#f8f9fa',
+          100: '#f1f3f4',
+          200: '#e8eaed',
+          300: '#dadce0',
+          400: '#bdc1c6',
+          500: '#9aa0a6',
+          600: '#80868b',
+          700: '#5f6368',
+          800: '#3c4043',
+          900: '#202124',
+          950: '#1a1a1a',
+        },
+        'kincha': {
+          50: '#fefcf8',
+          100: '#fdf8f0',
+          200: '#faf0d8',
+          300: '#f5e4b8',
+          400: '#eed494',
+          500: '#e4c06e',
+          600: '#d8a94a',
+          700: '#c08d3a',
+          800: '#9e7132',
+          900: '#805e2f',
+          950: '#453115',
+        },
+        'cha': {
+          50: '#fdfcf9',
+          100: '#faf7f2',
+          200: '#f4ede0',
+          300: '#ecdfc8',
+          400: '#e1cca8',
+          500: '#d4b583',
+          600: '#c69d5f',
+          700: '#b17f42',
+          800: '#926738',
+          900: '#775530',
+          950: '#412c1a',
+        },
+        'hi': {
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444',
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d',
+          950: '#450a0a',
+        },
+        'ai': {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
+        },
+      },
+      fontFamily: {
+        'serif-jp': ['Noto Serif JP', 'serif'],
+        'sans-jp': ['Noto Sans JP', 'sans-serif'],
+        'serif-en': ['Garamond', 'serif'],
+        'sans-en': ['Inter', 'sans-serif'],
+      },
+      fontSize: {
+        'xs': ['0.75rem', { lineHeight: '1.5' }],
+        'sm': ['0.875rem', { lineHeight: '1.5714' }],
+        'base': ['1rem', { lineHeight: '1.75' }],
+        'lg': ['1.125rem', { lineHeight: '1.7778' }],
+        'xl': ['1.25rem', { lineHeight: '1.8' }],
+        '2xl': ['1.5rem', { lineHeight: '1.8333' }],
+        '3xl': ['1.875rem', { lineHeight: '1.8667' }],
+        '4xl': ['2.25rem', { lineHeight: '1.8889' }],
+        '5xl': ['3rem', { lineHeight: '1.9167' }],
+        '6xl': ['3.75rem', { lineHeight: '1.9333' }],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        '128': '32rem',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-up': 'slideUp 0.5s ease-out',
+        'slide-down': 'slideDown 0.5s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+    },
+  },
+  plugins: [],
+}
+
+export default config 
