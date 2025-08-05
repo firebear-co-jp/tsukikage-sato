@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { animeImages, fallbackImages } from '@/config/images';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -39,44 +38,25 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    try {
-      // Google Sheets APIにデータを送信
-      const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEETS_API_URL || '/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+    // 実際の送信処理をシミュレート
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    setIsSubmitting(false);
+    setSubmitStatus('success');
+    
+    // フォームをリセット
+    setTimeout(() => {
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+        preferredContact: 'email',
+        privacyAgreement: false,
       });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setSubmitStatus('success');
-        
-        // フォームをリセット
-        setTimeout(() => {
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            subject: '',
-            message: '',
-            preferredContact: 'email',
-            privacyAgreement: false,
-          });
-          setSubmitStatus('idle');
-        }, 3000);
-      } else {
-        console.error('送信エラー:', result.error);
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('送信エラー:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+      setSubmitStatus('idle');
+    }, 3000);
   };
 
   const contactInfo = [
@@ -110,12 +90,12 @@ export default function ContactPage() {
       <Header />
       
       {/* ヒーローセクション */}
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+      <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url(${animeImages.contact.hero})`,
+              backgroundImage: 'url(https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)',
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-sumi-900/60 via-sumi-900/40 to-transparent" />
@@ -163,24 +143,6 @@ export default function ContactPage() {
                 通常2〜3営業日以内にご返信いたします。
               </p>
             </div>
-          ) : submitStatus === 'error' ? (
-            <div className="bg-white rounded-2xl p-8 text-center shadow-lg">
-              <div className="text-6xl mb-4">❌</div>
-              <h3 className="font-serif-jp text-2xl font-medium text-hi-600 mb-4">
-                送信エラーが発生しました
-              </h3>
-              <p className="text-sumi-600 leading-relaxed mb-4">
-                申し訳ございませんが、送信に失敗しました。
-                <br />
-                しばらく時間をおいて再度お試しください。
-              </p>
-              <button
-                onClick={() => setSubmitStatus('idle')}
-                className="inline-flex items-center justify-center px-6 py-3 bg-cha-600 text-white font-medium rounded-full hover:bg-cha-700 transition-all duration-200"
-              >
-                再度送信する
-              </button>
-            </div>
           ) : (
             <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -195,7 +157,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
+                    className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
                     placeholder="山田 太郎"
                   />
                 </div>
@@ -211,7 +173,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
+                    className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
                     placeholder="example@email.com"
                   />
                 </div>
@@ -228,7 +190,7 @@ export default function ContactPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
+                    className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
                     placeholder="000-0000-0000"
                   />
                 </div>
@@ -242,7 +204,7 @@ export default function ContactPage() {
                     name="preferredContact"
                     value={formData.preferredContact}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
+                    className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
                   >
                     <option value="email">メール</option>
                     <option value="phone">お電話</option>
@@ -260,7 +222,7 @@ export default function ContactPage() {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
+                  className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
                 >
                   <option value="">お問い合わせ内容を選択してください</option>
                   <option value="reservation">ご予約について</option>
@@ -283,7 +245,7 @@ export default function ContactPage() {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 resize-none text-sumi-900"
+                  className="w-full px-4 py-3 border border-kincha-200 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 resize-none"
                   placeholder="お問い合わせの詳細をご記入ください。"
                 />
               </div>
@@ -299,7 +261,7 @@ export default function ContactPage() {
                     className="mt-1 w-4 h-4 text-cha-600 border-kincha-300 rounded focus:ring-cha-500 focus:ring-2"
                   />
                   <span className="text-sm text-sumi-600">
-                    <a href="/privacy" className="text-cha-600 hover:text-cha-700 underline">
+                    <a href="/Ryokan-HP/privacy" className="text-cha-600 hover:text-cha-700 underline">
                       プライバシーポリシー
                     </a>
                     に同意の上、送信してください。
