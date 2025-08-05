@@ -33,7 +33,7 @@ export default function NewsDetailClient() {
         <h3>期間</h3>
         <p>2024年8月1日〜8月31日</p>
         
-        <p>ご予約はお電話またはお問い合わせフォームからお願いいたします。</p>
+        <p>ご予約はお電話またはお問い合わせからお願いいたします。</p>
       `,
       image: animeImages.cuisine.seasonalDishes,
     },
@@ -172,7 +172,7 @@ export default function NewsDetailClient() {
           <li>虫除けスプレー</li>
         </ul>
         
-        <p>ご予約はお電話またはお問い合わせフォームからお願いいたします。</p>
+        <p>ご予約はお電話またはお問い合わせからお願いいたします。</p>
       `,
       image: animeImages.main.ryokanNight,
     },

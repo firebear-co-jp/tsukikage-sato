@@ -124,7 +124,7 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif-jp text-4xl md:text-5xl font-medium text-sumi-900 mb-6">
-              お問い合わせフォーム
+              お問い合わせ
             </h2>
             <p className="font-sans-jp text-lg text-sumi-600 max-w-2xl mx-auto leading-relaxed">
               ご宿泊やご予約について、お気軽にお問い合わせください。
