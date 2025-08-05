@@ -121,7 +121,7 @@ export default function FeaturesSection() {
         {/* CTA */}
         <div className="text-center mt-16">
           <Link
-                            href="/Ryokan-HP/concept"
+                            href="/concept"
             className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cha-600 to-cha-700 text-white font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
             すべての魅力を見る

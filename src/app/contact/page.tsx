@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { animeImages } from '@/config/images';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -95,7 +96,7 @@ export default function ContactPage() {
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)',
+              backgroundImage: `url(${animeImages.contact.hero})`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-sumi-900/60 via-sumi-900/40 to-transparent" />
@@ -261,7 +262,7 @@ export default function ContactPage() {
                     className="mt-1 w-4 h-4 text-cha-600 border-kincha-300 rounded focus:ring-cha-500 focus:ring-2"
                   />
                   <span className="text-sm text-sumi-600">
-                    <a href="/Ryokan-HP/privacy" className="text-cha-600 hover:text-cha-700 underline">
+                    <a href="/privacy" className="text-cha-600 hover:text-cha-700 underline">
                       プライバシーポリシー
                     </a>
                     に同意の上、送信してください。

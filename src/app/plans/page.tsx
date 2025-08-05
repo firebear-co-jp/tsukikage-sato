@@ -29,7 +29,7 @@ export default function PlansPage() {
       price: '45,000',
       priceNote: '〜（2名様1室）',
       features: ['露天風呂付き客室', '特別会席料理', '記念日デコレーション', 'シャンパンサービス'],
-      href: '/Ryokan-HP/plans/romantic-special/',
+      href: '/plans/romantic-special/',
       category: 'romantic',
       popular: true,
     },
@@ -43,7 +43,7 @@ export default function PlansPage() {
       price: '38,000',
       priceNote: '〜（2名様1室）',
       features: ['渓谷を望む和室', '季節の会席料理', '地産地消メニュー', '個室での食事'],
-      href: '/Ryokan-HP/plans/gourmet-seasonal/',
+      href: '/plans/gourmet-seasonal/',
       category: 'gourmet',
     },
     {
@@ -56,7 +56,7 @@ export default function PlansPage() {
       price: '32,000',
       priceNote: '〜（2名様1室）',
       features: ['渓谷を望む和室', '貸切風呂利用', '温泉効能説明', 'リラクゼーション'],
-      href: '/Ryokan-HP/plans/relax-onsen/',
+      href: '/plans/relax-onsen/',
       category: 'relax',
     },
     {
@@ -69,7 +69,7 @@ export default function PlansPage() {
       price: '35,000',
       priceNote: '〜（4名様1室）',
       features: ['和洋室', 'お子様メニュー', '貸切風呂利用', '家族向けアメニティ'],
-      href: '/Ryokan-HP/plans/family-friendly/',
+      href: '/plans/family-friendly/',
       category: 'family',
     },
     {
@@ -82,7 +82,7 @@ export default function PlansPage() {
       price: '28,000',
       priceNote: '〜（1名様）',
       features: ['渓谷を望む和室', '一人用会席料理', '貸切風呂利用', '読書スペース'],
-      href: '/Ryokan-HP/plans/solo-healing/',
+      href: '/plans/solo-healing/',
       category: 'solo',
     },
     {
@@ -95,7 +95,7 @@ export default function PlansPage() {
       price: '65,000',
       priceNote: '〜（2名様1室）',
       features: ['露天風呂付きスイート', '特別会席料理', '専用コンシェルジュ', 'シャンパンサービス'],
-      href: '/Ryokan-HP/plans/premium-suite/',
+      href: '/plans/premium-suite/',
       category: 'romantic',
       premium: true,
     },
@@ -288,7 +288,7 @@ export default function PlansPage() {
               000-0000-0000
             </a>
             <a
-              href="/Ryokan-HP/contact/"
+              href="/contact/"
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-cha-600 text-cha-600 font-medium rounded-full hover:bg-cha-600 hover:text-white transition-all duration-200"
             >
               お問い合わせフォーム

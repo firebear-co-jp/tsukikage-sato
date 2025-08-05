@@ -132,7 +132,7 @@ export default function PlansSection() {
         {/* CTA */}
         <div className="text-center">
           <Link
-                            href="/Ryokan-HP/plans"
+                            href="/plans"
             className="inline-flex items-center justify-center px-8 py-4 border-2 border-cha-600 text-cha-600 font-medium rounded-full hover:bg-cha-600 hover:text-white transition-all duration-200"
           >
             すべてのプランを見る
