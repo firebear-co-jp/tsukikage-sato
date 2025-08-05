@@ -5,22 +5,22 @@ export default function Footer() {
 
   const footerLinks = {
     about: [
-      { href: '/concept', label: '月影の郷の魅力' },
-      { href: '/onsen', label: '温泉' },
-      { href: '/cuisine', label: 'お料理' },
-      { href: '/rooms', label: 'お部屋' },
+      { href: '/Ryokan-HP/concept/', label: '月影の郷の魅力' },
+      { href: '/Ryokan-HP/onsen/', label: '温泉' },
+      { href: '/Ryokan-HP/cuisine/', label: 'お料理' },
+      { href: '/Ryokan-HP/rooms/', label: 'お部屋' },
     ],
     plans: [
-      { href: '/plans', label: 'ご宿泊プラン' },
-      { href: '/facilities', label: '館内のご案内' },
-      { href: '/sightseeing', label: '周辺観光' },
-      { href: '/access', label: '交通案内' },
+      { href: '/Ryokan-HP/plans/', label: 'ご宿泊プラン' },
+      { href: '/Ryokan-HP/facilities/', label: '館内のご案内' },
+      { href: '/Ryokan-HP/sightseeing/', label: '周辺観光' },
+      { href: '/Ryokan-HP/access/', label: '交通案内' },
     ],
     support: [
-      { href: '/faq', label: 'よくあるご質問' },
-      { href: '/contact', label: 'お問い合わせ' },
-      { href: '/privacy', label: 'プライバシーポリシー' },
-      { href: '/terms', label: '利用規約' },
+      { href: '/Ryokan-HP/faq/', label: 'よくあるご質問' },
+      { href: '/Ryokan-HP/contact/', label: 'お問い合わせ' },
+      { href: '/Ryokan-HP/privacy/', label: 'プライバシーポリシー' },
+      { href: '/Ryokan-HP/terms/', label: '利用規約' },
     ],
   };
 
@@ -169,11 +169,11 @@ export default function Footer() {
               © {currentYear} 渓谷の湯 旅館『月影の郷』. All rights reserved.
             </p>
             <div className="flex items-center space-x-4 text-sm text-kincha-300">
-              <Link href="/privacy" className="hover:text-kincha-200 transition-colors duration-200">
+              <Link href="/Ryokan-HP/privacy/" className="hover:text-kincha-200 transition-colors duration-200">
                 プライバシーポリシー
               </Link>
               <span>|</span>
-              <Link href="/terms" className="hover:text-kincha-200 transition-colors duration-200">
+              <Link href="/Ryokan-HP/terms/" className="hover:text-kincha-200 transition-colors duration-200">
                 利用規約
               </Link>
             </div>
