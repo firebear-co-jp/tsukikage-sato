@@ -138,6 +138,44 @@ export default function NewsDetailClient() {
       `,
       image: animeImages.facilities.lobby,
     },
+    '6': {
+      date: '2024.07.05',
+      category: 'イベント',
+      title: '夏の星空観賞会開催',
+      content: `
+        <p>澄んだ空気の中で、美しい星空を眺める特別な時間をお過ごしください。専門ガイドによる解説付きで、夏の星座や天の川を楽しむことができます。</p>
+        
+        <h3>イベント内容</h3>
+        <ul>
+          <li>専門ガイドによる星座解説</li>
+          <li>天体望遠鏡での観察</li>
+          <li>夏の星座の紹介</li>
+          <li>天の川の観察</li>
+          <li>星空写真の撮影指導</li>
+        </ul>
+        
+        <h3>開催日時</h3>
+        <p>2024年7月20日、8月3日、8月17日<br>
+        19:00〜21:00（雨天の場合は翌日に延期）</p>
+        
+        <h3>料金</h3>
+        <p>お一人様 5,000円（税込）<br>
+        宿泊者様は3,000円（税込）</p>
+        
+        <h3>定員</h3>
+        <p>各回20名様（先着順）</p>
+        
+        <h3>持ち物</h3>
+        <ul>
+          <li>防寒具（夜は冷えます）</li>
+          <li>カメラ（任意）</li>
+          <li>虫除けスプレー</li>
+        </ul>
+        
+        <p>ご予約はお電話またはお問い合わせフォームからお願いいたします。</p>
+      `,
+      image: animeImages.main.ryokanNight,
+    },
   };
 
   const news = newsData[newsId as keyof typeof newsData];
