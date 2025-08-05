@@ -262,7 +262,7 @@ export default function ContactPage() {
                     className="mt-1 w-4 h-4 text-cha-600 border-kincha-300 rounded focus:ring-cha-500 focus:ring-2"
                   />
                   <span className="text-sm text-sumi-600">
-                    <a href="/privacy" className="text-cha-600 hover:text-cha-700 underline">
+                    <a href="/Ryokan-HP/privacy" className="text-cha-600 hover:text-cha-700 underline">
                       プライバシーポリシー
                     </a>
                     に同意の上、送信してください。

@@ -18,15 +18,15 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { href: '/concept/', label: '月影の郷の魅力' },
-    { href: '/onsen/', label: '温泉' },
-    { href: '/cuisine/', label: 'お料理' },
-    { href: '/rooms/', label: 'お部屋' },
-    { href: '/plans/', label: 'ご宿泊プラン' },
-    { href: '/facilities/', label: '館内のご案内' },
-    { href: '/sightseeing/', label: '周辺観光' },
-    { href: '/access/', label: '交通案内' },
-    { href: '/contact/', label: 'お問い合わせ' },
+    { href: '/Ryokan-HP/concept/', label: '月影の郷の魅力' },
+    { href: '/Ryokan-HP/onsen/', label: '温泉' },
+    { href: '/Ryokan-HP/cuisine/', label: 'お料理' },
+    { href: '/Ryokan-HP/rooms/', label: 'お部屋' },
+    { href: '/Ryokan-HP/plans/', label: 'ご宿泊プラン' },
+    { href: '/Ryokan-HP/facilities/', label: '館内のご案内' },
+    { href: '/Ryokan-HP/sightseeing/', label: '周辺観光' },
+    { href: '/Ryokan-HP/access/', label: '交通案内' },
+    { href: '/Ryokan-HP/contact/', label: 'お問い合わせ' },
   ];
 
   return (
@@ -100,7 +100,7 @@ export default function Header() {
 
             {/* 予約ボタン */}
             <Link
-              href="/plans/"
+              href="/Ryokan-HP/plans/"
               className="hidden sm:inline-flex items-center px-4 py-2 bg-gradient-to-r from-cha-600 to-cha-700 text-white text-sm font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
               ご予約
@@ -143,7 +143,7 @@ export default function Header() {
               ))}
               <div className="px-4 py-3">
                 <Link
-                  href="/plans/"
+                  href="/Ryokan-HP/plans/"
                   onClick={() => setIsMenuOpen(false)}
                   className="block w-full text-center px-4 py-3 bg-gradient-to-r from-cha-600 to-cha-700 text-white text-sm font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200"
                 >

@@ -223,7 +223,7 @@ export default function RoomsPage() {
                     {/* 予約ボタン */}
                     <div className="pt-4">
                       <a
-                        href="/plans/"
+                        href="/Ryokan-HP/plans/"
                         className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-cha-600 to-cha-700 text-white font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                       >
                         ご予約はこちら
@@ -294,13 +294,13 @@ export default function RoomsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/plans/"
+              href="/Ryokan-HP/plans/"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-cha-600 font-medium rounded-full hover:bg-kincha-50 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               ご宿泊プランを見る
             </a>
             <a
-              href="/contact/"
+              href="/Ryokan-HP/contact/"
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-cha-600 transition-all duration-200"
             >
               お問い合わせ
