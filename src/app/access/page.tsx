@@ -30,11 +30,13 @@ export default function AccessPage() {
       routes: [
         {
           line: '○○IC',
+          station: '',
           time: '車で30分',
           details: '○○ICを降りて、○○国道を○○方面に向かいます。○○交差点を右折し、○○県道を進むと右手にございます。',
         },
         {
           line: '○○IC',
+          station: '',
           time: '車で45分',
           details: '○○ICを降りて、○○国道を○○方面に向かいます。○○交差点を左折し、○○県道を進むと左手にございます。',
         },
@@ -47,6 +49,7 @@ export default function AccessPage() {
       routes: [
         {
           line: '○○空港',
+          station: '',
           time: '車で90分',
           details: '○○空港からレンタカーまたはタクシーをご利用ください。○○IC経由でお越しいただけます。',
         },
@@ -212,7 +215,7 @@ export default function AccessPage() {
                     <div key={idx} className="bg-white rounded-lg p-6">
                       <div className="flex items-center justify-between mb-4">
                         <h4 className="font-serif-jp text-lg font-medium text-sumi-900">
-                          {route.line} {route.station}
+                          {route.line} {route.station && route.station}
                         </h4>
                         <span className="text-cha-600 font-medium">{route.time}</span>
                       </div>
