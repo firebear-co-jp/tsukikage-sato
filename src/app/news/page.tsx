@@ -11,7 +11,7 @@ export default function NewsPage() {
       category: 'お知らせ',
       title: '夏の特別プラン「涼やか会席」のご案内',
       excerpt: '夏の暑さを忘れられる、涼やかな会席料理をご用意いたしました。地元の夏野菜を使用した...',
-      href: '/news/1',
+      href: '/news/1/',
       image: animeImages.cuisine.seasonalDishes,
     },
     {
@@ -20,7 +20,7 @@ export default function NewsPage() {
       category: 'イベント',
       title: '七夕の夕べ 特別イベント開催',
       excerpt: '7月7日に七夕の夕べ特別イベントを開催いたします。短冊に願いを込めて、ロマンチックな...',
-      href: '/news/2',
+      href: '/news/2/',
       image: animeImages.main.ryokanNight,
     },
     {
@@ -29,7 +29,7 @@ export default function NewsPage() {
       category: '温泉',
       title: '温泉効能について',
       excerpt: '当館の温泉は、神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ...',
-      href: '/news/3',
+      href: '/news/3/',
       image: animeImages.onsen.outdoorView,
     },
     {
@@ -38,7 +38,7 @@ export default function NewsPage() {
       category: 'お料理',
       title: '7月の旬の食材',
       excerpt: '7月は夏野菜が美味しい季節です。当館では、地元で採れた新鮮な夏野菜を使用した...',
-      href: '/news/4',
+      href: '/news/4/',
       image: animeImages.cuisine.chefCooking,
     },
     {
@@ -47,7 +47,7 @@ export default function NewsPage() {
       category: 'お知らせ',
       title: '新型コロナウイルス感染症対策について',
       excerpt: 'お客様の安全と安心を最優先に考え、新型コロナウイルス感染症対策を徹底してまいります...',
-      href: '/news/5',
+      href: '/news/5/',
       image: animeImages.facilities.gardenLobby,
     },
     {
@@ -56,7 +56,7 @@ export default function NewsPage() {
       category: 'イベント',
       title: '夏の星空観賞会開催',
       excerpt: '澄んだ空気の中で、美しい星空を眺める特別な時間をお過ごしください。専門ガイドによる...',
-      href: '/news/6',
+      href: '/news/6/',
       image: animeImages.main.ryokanNight,
     },
   ];

@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { animeImages } from '@/config/images';
@@ -154,12 +155,12 @@ export default function NewsDetailClient() {
               <p className="font-sans-jp text-lg text-sumi-600 mb-8">
                 指定されたお知らせは存在しません。
               </p>
-              <a
-                href="/news"
+              <Link
+                href="/news/"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cha-600 hover:bg-cha-700 transition-colors duration-200"
               >
                 お知らせ一覧に戻る
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -212,12 +213,12 @@ export default function NewsDetailClient() {
           </div>
           
           <div className="mt-12 pt-8 border-t border-kincha-200">
-            <a
-              href="/news"
+            <Link
+              href="/news/"
               className="inline-flex items-center px-6 py-3 border border-cha-600 text-cha-600 font-medium rounded-md hover:bg-cha-600 hover:text-white transition-colors duration-200"
             >
               ← お知らせ一覧に戻る
-            </a>
+            </Link>
           </div>
         </div>
       </section>
