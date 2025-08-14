@@ -1,14 +1,19 @@
 // 環境に応じて動的にリンクを生成するユーティリティ関数
 
 export function getLink(path: string): string {
-  // クライアントサイドでホスト名を確認して環境を判定
-  const isProduction = typeof window !== 'undefined' 
-    ? window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
-    : process.env.NODE_ENV === 'production';
+  // Next.jsのbasePath設定を使用（next.config.jsで設定）
+  // クライアントサイドでは window.__NEXT_DATA__ から取得
+  let basePath = '';
   
-  // 本番環境（GitHub Pages）では /tsukikage-sato プレフィックスが必要
-  // ローカル開発では不要
-  const basePath = isProduction ? '/tsukikage-sato' : '';
+  if (typeof window !== 'undefined') {
+    // クライアントサイドでは window.__NEXT_DATA__ から basePath を取得
+    // TypeScriptエラーを回避するため、any型でキャスト
+    const nextData = (window as any).__NEXT_DATA__;
+    basePath = nextData?.basePath || '';
+  } else {
+    // サーバーサイドでは環境変数から判定
+    basePath = process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : '';
+  }
   
   // パスが既に / で始まっている場合はそのまま使用
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
@@ -17,7 +22,7 @@ export function getLink(path: string): string {
   
   // デバッグ用ログ（開発時のみ）
   if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-    console.log(`getLink(${path}): ${result} (isProduction: ${isProduction})`);
+    console.log(`getLink(${path}): ${result} (basePath: ${basePath})`);
   }
   
   return result;
