@@ -128,3 +128,23 @@ body {
   );
   backdrop-filter: blur(10px);
 }
+
+/* 入力フィールドの文字色を強制設定 */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  color: #202124 !important;
+  -webkit-text-fill-color: #202124 !important;
+}
+
+/* プレースホルダーの色も設定 */
+input::placeholder,
+textarea::placeholder {
+  color: #9aa0a6 !important;
+  -webkit-text-fill-color: #9aa0a6 !important;
+}
