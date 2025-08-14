@@ -35,6 +35,11 @@ jobs:
       
       - name: Build with Next.js
         run: npm run build
+        env:
+          NODE_ENV: production
+      
+      - name: List build output
+        run: ls -la out/
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
