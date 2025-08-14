@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { LINKS } from '@/utils/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReservationWidget from '@/components/ReservationWidget';
@@ -288,7 +289,7 @@ export default function PlansPage() {
               000-0000-0000
             </a>
             <a
-              href="/contact"
+              href={LINKS.CONTACT()}
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-cha-600 text-cha-600 font-medium rounded-full hover:bg-cha-600 hover:text-white transition-all duration-200"
             >
               お問い合わせ

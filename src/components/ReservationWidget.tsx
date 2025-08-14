@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { LINKS } from '@/utils/link';
 
 export default function ReservationWidget() {
   const [checkIn, setCheckIn] = useState('');
@@ -18,9 +19,8 @@ export default function ReservationWidget() {
       children: children.toString(),
     });
     
-    // 予約ページにリダイレクト（環境に応じてプレフィックスを設定）
-    const basePath = process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : '';
-    window.location.href = `${basePath}/reservation?${params.toString()}`;
+    // 予約ページにリダイレクト
+    window.location.href = `${LINKS.RESERVATION()}?${params.toString()}`;
   };
 
   const getMinCheckOutDate = () => {
@@ -136,7 +136,7 @@ export default function ReservationWidget() {
         {/* プラン一覧へのリンク */}
         <div className="text-center">
           <Link
-            href={process.env.NODE_ENV === 'production' ? '/tsukikage-sato/plans' : '/plans'}
+            href={LINKS.PLANS()}
             className="text-sumi-600 hover:text-sumi-900 text-sm underline transition-colors duration-200"
           >
             宿泊プラン一覧を見る →

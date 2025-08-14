@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import ReservationWidget from './ReservationWidget';
 import { animeImages, fallbackImages } from '@/config/images';
+import { LINKS } from '@/utils/link';
 
 export default function HeroSection() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -107,13 +108,13 @@ export default function HeroSection() {
               {/* CTAボタン */}
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
                 <a
-                  href={process.env.NODE_ENV === 'production' ? '/tsukikage-sato/plans' : '/plans'}
+                  href={LINKS.PLANS()}
                   className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cha-600 to-cha-700 text-white font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   ご宿泊プランを見る
                 </a>
                 <a
-                  href={process.env.NODE_ENV === 'production' ? '/tsukikage-sato/contact' : '/contact'}
+                  href={LINKS.CONTACT()}
                   className="inline-flex items-center justify-center px-8 py-4 border-2 border-kincha-200 text-kincha-100 font-medium rounded-full hover:bg-kincha-200 hover:text-sumi-900 transition-all duration-200"
                 >
                   お問い合わせ

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { LINKS } from '@/utils/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { animeImages } from '@/config/images';
@@ -107,7 +108,7 @@ export default function ThankYouPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Link
-              href="/plans"
+              href={LINKS.PLANS()}
               className="group bg-kincha-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="text-4xl mb-4">🏨</div>
@@ -120,7 +121,7 @@ export default function ThankYouPage() {
             </Link>
 
             <Link
-              href="/onsen"
+              href={LINKS.ONSEN()}
               className="group bg-kincha-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="text-4xl mb-4">♨️</div>
@@ -133,7 +134,7 @@ export default function ThankYouPage() {
             </Link>
 
             <Link
-              href="/cuisine"
+              href={LINKS.CUISINE()}
               className="group bg-kincha-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="text-4xl mb-4">🍽️</div>
@@ -148,7 +149,7 @@ export default function ThankYouPage() {
 
           <div className="text-center mt-12">
             <Link
-              href="/"
+              href={LINKS.HOME()}
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-cha-600 text-cha-600 font-medium rounded-full hover:bg-cha-600 hover:text-white transition-all duration-200"
             >
               トップページに戻る

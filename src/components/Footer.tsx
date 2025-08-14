@@ -1,26 +1,27 @@
 import Link from 'next/link';
+import { LINKS } from '@/utils/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     about: [
-      { href: '/concept', label: '月影の郷の魅力' },
-      { href: '/onsen', label: '温泉' },
-      { href: '/cuisine', label: 'お料理' },
-      { href: '/rooms', label: 'お部屋' },
+      { href: LINKS.CONCEPT(), label: '月影の郷の魅力' },
+      { href: LINKS.ONSEN(), label: '温泉' },
+      { href: LINKS.CUISINE(), label: 'お料理' },
+      { href: LINKS.ROOMS(), label: 'お部屋' },
     ],
     plans: [
-      { href: '/plans', label: 'ご宿泊プラン' },
-      { href: '/facilities', label: '館内のご案内' },
-      { href: '/sightseeing', label: '周辺観光' },
-      { href: '/access', label: '交通案内' },
+      { href: LINKS.PLANS(), label: 'ご宿泊プラン' },
+      { href: LINKS.FACILITIES(), label: '館内のご案内' },
+      { href: LINKS.SIGHTSEEING(), label: '周辺観光' },
+      { href: LINKS.ACCESS(), label: '交通案内' },
     ],
     support: [
-      { href: '/faq', label: 'よくあるご質問' },
-      { href: '/contact', label: 'お問い合わせ' },
-      { href: '/privacy', label: 'プライバシーポリシー' },
-      { href: '/terms', label: '利用規約' },
+      { href: LINKS.FAQ(), label: 'よくあるご質問' },
+      { href: LINKS.CONTACT(), label: 'お問い合わせ' },
+      { href: LINKS.PRIVACY(), label: 'プライバシーポリシー' },
+      { href: LINKS.TERMS(), label: '利用規約' },
     ],
   };
 
@@ -169,11 +170,11 @@ export default function Footer() {
               © {currentYear} 渓谷の湯 旅館『月影の郷』. All rights reserved.
             </p>
             <div className="flex items-center space-x-4 text-sm text-kincha-300">
-              <Link href="/privacy" className="hover:text-kincha-200 transition-colors duration-200">
+              <Link href={LINKS.PRIVACY()} className="hover:text-kincha-200 transition-colors duration-200">
                 プライバシーポリシー
               </Link>
               <span>|</span>
-              <Link href="/terms" className="hover:text-kincha-200 transition-colors duration-200">
+              <Link href={LINKS.TERMS()} className="hover:text-kincha-200 transition-colors duration-200">
                 利用規約
               </Link>
             </div>
