@@ -1,14 +1,26 @@
 // 環境に応じて動的にリンクを生成するユーティリティ関数
 
 export function getLink(path: string): string {
+  // クライアントサイドでホスト名を確認して環境を判定
+  const isProduction = typeof window !== 'undefined' 
+    ? window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
+    : process.env.NODE_ENV === 'production';
+  
   // 本番環境（GitHub Pages）では /tsukikage-sato プレフィックスが必要
   // ローカル開発では不要
-  const basePath = process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : '';
+  const basePath = isProduction ? '/tsukikage-sato' : '';
   
   // パスが既に / で始まっている場合はそのまま使用
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   
-  return `${basePath}${cleanPath}`;
+  const result = `${basePath}${cleanPath}`;
+  
+  // デバッグ用ログ（開発時のみ）
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+    console.log(`getLink(${path}): ${result} (isProduction: ${isProduction})`);
+  }
+  
+  return result;
 }
 
 // よく使用されるリンクの定数
