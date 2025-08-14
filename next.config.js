@@ -7,8 +7,8 @@ const nextConfig = {
     loader: 'default',
     disableStaticImages: false
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/Ryokan-HP' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Ryokan-HP' : ''
+  basePath: process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : ''
 };
 
 module.exports = nextConfig; 
