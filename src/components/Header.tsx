@@ -100,7 +100,7 @@ export default function Header() {
 
             {/* 予約ボタン */}
             <Link
-              href="/plans/"
+              href="/reservation/"
               className="hidden sm:inline-flex items-center px-4 py-2 bg-gradient-to-r from-cha-600 to-cha-700 text-white text-sm font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
               ご予約
@@ -143,7 +143,7 @@ export default function Header() {
               ))}
               <div className="px-4 py-3">
                 <Link
-                  href="/plans/"
+                  href="/reservation/"
                   onClick={() => setIsMenuOpen(false)}
                   className="block w-full text-center px-4 py-3 bg-gradient-to-r from-cha-600 to-cha-700 text-white text-sm font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200"
                 >

@@ -1,0 +1,89 @@
+// テスト用のGoogle Apps Scriptコード
+// このコードをGoogle Apps Scriptエディタにコピー&ペーストしてテストしてください
+
+function doGet(e) {
+  try {
+    const action = e.parameter.action;
+    const callback = e.parameter.callback;
+    
+    console.log('Received action:', action);
+    console.log('Received callback:', callback);
+    
+    if (action === 'search') {
+      const data = e.parameter.data;
+      console.log('Received data:', data);
+      
+      // テスト用の固定レスポンス
+      const testResponse = {
+        success: true,
+        availableRooms: [
+          {
+            id: 'washitsu-a',
+            name: '和室A',
+            capacity: 2,
+            price: 15000,
+            totalPrice: 15000
+          },
+          {
+            id: 'washitsu-b',
+            name: '和室B',
+            capacity: 4,
+            price: 25000,
+            totalPrice: 25000
+          }
+        ],
+        checkIn: '2024-01-15',
+        checkOut: '2024-01-16',
+        guests: 2
+      };
+      
+      console.log('Sending response:', testResponse);
+      
+      return ContentService
+        .createTextOutput(`${callback}(${JSON.stringify(testResponse)})`)
+        .setMimeType(ContentService.MimeType.JAVASCRIPT);
+    }
+    
+    // デフォルトレスポンス
+    const defaultResponse = {
+      success: false,
+      message: 'Invalid action'
+    };
+    
+    return ContentService
+      .createTextOutput(`${callback}(${JSON.stringify(defaultResponse)})`)
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+      
+  } catch (error) {
+    console.error('Error in doGet:', error);
+    
+    const errorResponse = {
+      success: false,
+      message: error.toString()
+    };
+    
+    return ContentService
+      .createTextOutput(`${callback}(${JSON.stringify(errorResponse)})`)
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+}
+
+// テスト用の関数
+function testSearchAvailability() {
+  const testParams = {
+    action: 'search',
+    callback: 'testCallback',
+    data: JSON.stringify({
+      checkIn: '2024-01-15',
+      checkOut: '2024-01-16',
+      guests: 2
+    })
+  };
+  
+  const mockEvent = {
+    parameter: testParams
+  };
+  
+  const result = doGet(mockEvent);
+  console.log('Test result:', result.getContent());
+}

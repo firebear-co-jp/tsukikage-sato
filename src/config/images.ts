@@ -77,7 +77,9 @@ export const animeImages = {
   },
   
   contact: {
-    hero: '/tsukikage-sato/images/anime-style/contact-hero.png',
+    hero: process.env.NODE_ENV === 'production' 
+      ? '/tsukikage-sato/images/anime-style/contact-hero.png'
+      : '/images/anime-style/contact-hero.png',
   },
   
   privacy: {
