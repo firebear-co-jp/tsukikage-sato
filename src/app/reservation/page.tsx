@@ -34,6 +34,26 @@ export default function ReservationPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   
+  // URLパラメータを読み取って初期値を設定
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const checkIn = urlParams.get('checkIn');
+    const checkOut = urlParams.get('checkOut');
+    const adults = urlParams.get('adults');
+    const children = urlParams.get('children');
+    
+    if (checkIn || checkOut || adults || children) {
+      setSearchData(prev => ({
+        ...prev,
+        checkIn: checkIn || prev.checkIn,
+        checkOut: checkOut || prev.checkOut,
+        adults: adults ? parseInt(adults) : prev.adults,
+        children: children ? parseInt(children) : prev.children,
+        guests: (adults ? parseInt(adults) : prev.adults) + (children ? parseInt(children) : prev.children)
+      }));
+    }
+  }, []);
+
   // selectedRoomの状態変化を監視
   useEffect(() => {
     console.log('Selected room changed:', selectedRoom);
