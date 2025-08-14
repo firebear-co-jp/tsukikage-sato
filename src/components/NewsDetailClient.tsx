@@ -195,7 +195,7 @@ export default function NewsDetailClient() {
                 指定されたお知らせは存在しません。
               </p>
                               <Link
-                  href={LINKS.NEWS()}
+                  href={LINKS.NEWS}
                   className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cha-600 hover:bg-cha-700 transition-colors duration-200"
                 >
                 お知らせ一覧に戻る
@@ -253,7 +253,7 @@ export default function NewsDetailClient() {
           
           <div className="mt-12 pt-8 border-t border-kincha-200">
                           <Link
-                href={LINKS.NEWS()}
+                href={LINKS.NEWS}
                 className="inline-flex items-center px-6 py-3 border border-cha-600 text-cha-600 font-medium rounded-md hover:bg-cha-600 hover:text-white transition-colors duration-200"
               >
               ← お知らせ一覧に戻る

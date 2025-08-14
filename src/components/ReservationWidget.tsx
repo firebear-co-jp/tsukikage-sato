@@ -20,7 +20,7 @@ export default function ReservationWidget() {
     });
     
     // 予約ページにリダイレクト
-    window.location.href = `${LINKS.RESERVATION()}?${params.toString()}`;
+    window.location.href = `${LINKS.RESERVATION}?${params.toString()}`;
   };
 
   const getMinCheckOutDate = () => {
@@ -136,7 +136,7 @@ export default function ReservationWidget() {
         {/* プラン一覧へのリンク */}
         <div className="text-center">
           <Link
-            href={LINKS.PLANS()}
+            href={LINKS.PLANS}
             className="text-sumi-600 hover:text-sumi-900 text-sm underline transition-colors duration-200"
           >
             宿泊プラン一覧を見る →

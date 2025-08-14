@@ -328,7 +328,7 @@ export default function SightseeingPage() {
                 地元のガイドが丁寧にご案内いたします。事前にご予約ください。
               </p>
               <a
-                href={LINKS.CONTACT()}
+                href={LINKS.CONTACT}
                 className="inline-flex items-center justify-center px-4 py-2 bg-cha-600 text-white text-sm font-medium rounded-full hover:bg-cha-700 transition-all duration-200"
               >
                 お問い合わせ
@@ -344,7 +344,7 @@ export default function SightseeingPage() {
                 観光スポットへの送迎サービスもご利用いただけます。
               </p>
               <a
-                href={LINKS.CONTACT()}
+                href={LINKS.CONTACT}
                 className="inline-flex items-center justify-center px-4 py-2 bg-cha-600 text-white text-sm font-medium rounded-full hover:bg-cha-700 transition-all duration-200"
               >
                 ご予約
@@ -365,13 +365,13 @@ export default function SightseeingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href={LINKS.PLANS()}
+              href={LINKS.PLANS}
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-cha-600 font-medium rounded-full hover:bg-kincha-50 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               ご宿泊プランを見る
             </a>
             <a
-              href={LINKS.CONTACT()}
+              href={LINKS.CONTACT}
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-cha-600 transition-all duration-200"
             >
               お問い合わせ

@@ -6,9 +6,7 @@ const nextConfig = {
     unoptimized: true,
     loader: 'default',
     disableStaticImages: false
-  },
-  basePath: process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : ''
+  }
 };
 
 module.exports = nextConfig; 

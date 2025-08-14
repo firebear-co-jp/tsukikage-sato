@@ -6,22 +6,22 @@ export default function Footer() {
 
   const footerLinks = {
     about: [
-      { href: LINKS.CONCEPT(), label: '月影の郷の魅力' },
-      { href: LINKS.ONSEN(), label: '温泉' },
-      { href: LINKS.CUISINE(), label: 'お料理' },
-      { href: LINKS.ROOMS(), label: 'お部屋' },
+      { href: LINKS.CONCEPT, label: '月影の郷の魅力' },
+      { href: LINKS.ONSEN, label: '温泉' },
+      { href: LINKS.CUISINE, label: 'お料理' },
+      { href: LINKS.ROOMS, label: 'お部屋' },
     ],
     plans: [
-      { href: LINKS.PLANS(), label: 'ご宿泊プラン' },
-      { href: LINKS.FACILITIES(), label: '館内のご案内' },
-      { href: LINKS.SIGHTSEEING(), label: '周辺観光' },
-      { href: LINKS.ACCESS(), label: '交通案内' },
+      { href: LINKS.PLANS, label: 'ご宿泊プラン' },
+      { href: LINKS.FACILITIES, label: '館内のご案内' },
+      { href: LINKS.SIGHTSEEING, label: '周辺観光' },
+      { href: LINKS.ACCESS, label: '交通案内' },
     ],
     support: [
-      { href: LINKS.FAQ(), label: 'よくあるご質問' },
-      { href: LINKS.CONTACT(), label: 'お問い合わせ' },
-      { href: LINKS.PRIVACY(), label: 'プライバシーポリシー' },
-      { href: LINKS.TERMS(), label: '利用規約' },
+      { href: LINKS.FAQ, label: 'よくあるご質問' },
+      { href: LINKS.CONTACT, label: 'お問い合わせ' },
+      { href: LINKS.PRIVACY, label: 'プライバシーポリシー' },
+      { href: LINKS.TERMS, label: '利用規約' },
     ],
   };
 
@@ -170,11 +170,11 @@ export default function Footer() {
               © {currentYear} 渓谷の湯 旅館『月影の郷』. All rights reserved.
             </p>
             <div className="flex items-center space-x-4 text-sm text-kincha-300">
-              <Link href={LINKS.PRIVACY()} className="hover:text-kincha-200 transition-colors duration-200">
+              <Link href={LINKS.PRIVACY} className="hover:text-kincha-200 transition-colors duration-200">
                 プライバシーポリシー
               </Link>
               <span>|</span>
-              <Link href={LINKS.TERMS()} className="hover:text-kincha-200 transition-colors duration-200">
+              <Link href={LINKS.TERMS} className="hover:text-kincha-200 transition-colors duration-200">
                 利用規約
               </Link>
             </div>

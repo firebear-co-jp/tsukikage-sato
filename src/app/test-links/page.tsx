@@ -10,13 +10,13 @@ export default function TestLinksPage() {
         <div>
           <h2 className="text-lg font-semibold">生成されるリンク:</h2>
           <ul className="list-disc list-inside space-y-2 mt-2">
-            <li>HOME: {LINKS.HOME()}</li>
-            <li>CONTACT: {LINKS.CONTACT()}</li>
-            <li>PLANS: {LINKS.PLANS()}</li>
-            <li>RESERVATION: {LINKS.RESERVATION()}</li>
-            <li>FAQ: {LINKS.FAQ()}</li>
-            <li>PRIVACY: {LINKS.PRIVACY()}</li>
-            <li>TERMS: {LINKS.TERMS()}</li>
+            <li>HOME: {LINKS.HOME}</li>
+            <li>CONTACT: {LINKS.CONTACT}</li>
+            <li>PLANS: {LINKS.PLANS}</li>
+            <li>RESERVATION: {LINKS.RESERVATION}</li>
+            <li>FAQ: {LINKS.FAQ}</li>
+            <li>PRIVACY: {LINKS.PRIVACY}</li>
+            <li>TERMS: {LINKS.TERMS}</li>
           </ul>
         </div>
         <div>
@@ -35,9 +35,9 @@ export default function TestLinksPage() {
         <div>
           <h2 className="text-lg font-semibold">テストリンク:</h2>
           <div className="space-x-4">
-            <a href={LINKS.CONTACT()} className="text-blue-600 hover:underline">お問い合わせ</a>
-            <a href={LINKS.PLANS()} className="text-blue-600 hover:underline">プラン</a>
-            <a href={LINKS.RESERVATION()} className="text-blue-600 hover:underline">予約</a>
+            <a href={LINKS.CONTACT} className="text-blue-600 hover:underline">お問い合わせ</a>
+            <a href={LINKS.PLANS} className="text-blue-600 hover:underline">プラン</a>
+            <a href={LINKS.RESERVATION} className="text-blue-600 hover:underline">予約</a>
           </div>
         </div>
       </div>
