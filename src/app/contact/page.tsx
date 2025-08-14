@@ -59,7 +59,7 @@ export default function ContactPage() {
 
       window.grecaptcha.ready(async () => {
         try {
-          const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', {
+          const token = await window.grecaptcha.execute('6LdZxqUrAAAAABTwwYLrQQjbhNRMVLWKD6IBQKkV', {
             action: 'contact_form'
           });
           resolve(token);
@@ -404,7 +404,7 @@ export default function ContactPage() {
       
       {/* reCAPTCHA スクリプト */}
       <script
-        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'}`}
+        src="https://www.google.com/recaptcha/api.js?render=6LdZxqUrAAAAABTwwYLrQQjbhNRMVLWKD6IBQKkV"
         async
         defer
       />
