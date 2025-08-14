@@ -1,0 +1,16 @@
+{
+  "name": "月影の郷",
+  "short_name": "月影の郷",
+  "description": "渓谷の湯 旅館『月影の郷』の公式サイト",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8B4513",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
