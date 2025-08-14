@@ -233,7 +233,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                     placeholder="山田 太郎"
                   />
                 </div>
@@ -248,7 +248,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                     placeholder="example@email.com"
                   />
                 </div>
@@ -265,7 +265,7 @@ export default function ContactPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                     placeholder="000-0000-0000"
                   />
                 </div>
@@ -278,7 +278,7 @@ export default function ContactPage() {
                     name="preferredContact"
                     value={formData.preferredContact}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                   >
                     <option value="email">メール</option>
                     <option value="phone">お電話</option>
@@ -297,7 +297,7 @@ export default function ContactPage() {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                   placeholder="ご予約について"
                 />
               </div>
@@ -313,7 +313,7 @@ export default function ContactPage() {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                   placeholder="お問い合わせ内容を詳しくお書きください。"
                 />
               </div>
