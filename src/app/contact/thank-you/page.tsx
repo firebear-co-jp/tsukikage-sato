@@ -25,7 +25,9 @@ export default function ThankYouPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="text-white space-y-6">
               <h1 className="font-serif-jp text-5xl md:text-6xl font-light leading-tight">
-                お問い合わせありがとうございます
+                お問い合わせ
+                <br />
+                ありがとうございます
               </h1>
               <p className="font-sans-jp text-xl md:text-2xl text-kincha-100 leading-relaxed max-w-2xl">
                 内容を確認の上、担当者よりご連絡いたします。
@@ -41,7 +43,9 @@ export default function ThankYouPage() {
           <div className="bg-white rounded-2xl p-12 text-center shadow-lg">
             <div className="text-8xl mb-8">🎉</div>
             <h2 className="font-serif-jp text-4xl md:text-5xl font-medium text-sumi-900 mb-8">
-              お問い合わせありがとうございます
+              お問い合わせ
+              <br />
+              ありがとうございます
             </h2>
             
             <div className="space-y-6 text-sumi-600 leading-relaxed mb-12">
