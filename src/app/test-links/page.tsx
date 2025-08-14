@@ -20,6 +20,13 @@ export default function TestLinksPage() {
           </ul>
         </div>
         <div>
+          <h2 className="text-lg font-semibold">画像パス:</h2>
+          <ul className="list-disc list-inside space-y-2 mt-2">
+            <li>Contact Hero: /images/anime-style/contact-hero.png</li>
+            <li>Main Ryokan: /images/anime-style/main-ryokan-night.png</li>
+          </ul>
+        </div>
+        <div>
           <h2 className="text-lg font-semibold">環境情報:</h2>
           <p>NODE_ENV: {process.env.NODE_ENV}</p>
           <p>Hostname: {typeof window !== 'undefined' ? window.location.hostname : 'SSR'}</p>
