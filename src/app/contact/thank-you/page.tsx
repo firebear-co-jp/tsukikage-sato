@@ -107,7 +107,7 @@ export default function ThankYouPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Link
-              href="/plans/"
+              href="/plans"
               className="group bg-kincha-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="text-4xl mb-4">🏨</div>
@@ -120,7 +120,7 @@ export default function ThankYouPage() {
             </Link>
 
             <Link
-              href="/onsen/"
+              href="/onsen"
               className="group bg-kincha-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="text-4xl mb-4">♨️</div>
@@ -133,7 +133,7 @@ export default function ThankYouPage() {
             </Link>
 
             <Link
-              href="/cuisine/"
+              href="/cuisine"
               className="group bg-kincha-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="text-4xl mb-4">🍽️</div>

@@ -18,15 +18,15 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { href: '/concept/', label: '月影の郷の魅力' },
-    { href: '/onsen/', label: '温泉' },
-    { href: '/cuisine/', label: 'お料理' },
-    { href: '/rooms/', label: 'お部屋' },
-    { href: '/plans/', label: 'ご宿泊プラン' },
-    { href: '/facilities/', label: '館内のご案内' },
-    { href: '/sightseeing/', label: '周辺観光' },
-    { href: '/access/', label: '交通案内' },
-    { href: '/contact/', label: 'お問い合わせ' },
+    { href: '/concept', label: '月影の郷の魅力' },
+    { href: '/onsen', label: '温泉' },
+    { href: '/cuisine', label: 'お料理' },
+    { href: '/rooms', label: 'お部屋' },
+    { href: '/plans', label: 'ご宿泊プラン' },
+    { href: '/facilities', label: '館内のご案内' },
+    { href: '/sightseeing', label: '周辺観光' },
+    { href: '/access', label: '交通案内' },
+    { href: '/contact', label: 'お問い合わせ' },
   ];
 
   return (
@@ -100,7 +100,7 @@ export default function Header() {
 
             {/* 予約ボタン */}
             <Link
-              href="/reservation/"
+              href="/reservation"
               className="hidden sm:inline-flex items-center px-4 py-2 bg-gradient-to-r from-cha-600 to-cha-700 text-white text-sm font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
               ご予約
@@ -143,7 +143,7 @@ export default function Header() {
               ))}
               <div className="px-4 py-3">
                 <Link
-                  href="/reservation/"
+                  href="/reservation"
                   onClick={() => setIsMenuOpen(false)}
                   className="block w-full text-center px-4 py-3 bg-gradient-to-r from-cha-600 to-cha-700 text-white text-sm font-medium rounded-full hover:from-cha-700 hover:to-cha-800 transition-all duration-200"
                 >

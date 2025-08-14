@@ -355,7 +355,7 @@ export default function CuisinePage() {
               000-0000-0000
             </a>
             <a
-              href="/contact/"
+              href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-cha-600 text-cha-600 font-medium rounded-full hover:bg-cha-600 hover:text-white transition-all duration-200"
             >
               お問い合わせ
