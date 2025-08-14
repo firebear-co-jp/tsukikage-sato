@@ -77,9 +77,7 @@ export const animeImages = {
   },
   
   contact: {
-    hero: process.env.NODE_ENV === 'production' 
-      ? '/images/anime-style/contact-hero.png'
-      : '/images/anime-style/contact-hero.png',
+    hero: '/images/anime-style/contact-hero.png',
   },
   
   privacy: {

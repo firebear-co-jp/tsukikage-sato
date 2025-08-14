@@ -2,12 +2,13 @@
 
 export function getLink(path: string): string {
   // Next.jsのbasePath設定を使用（next.config.jsで設定）
-  // クライアントサイドでは window.__NEXT_DATA__ から取得
   let basePath = '';
   
   if (typeof window !== 'undefined') {
     // クライアントサイドでは window.__NEXT_DATA__ から basePath を取得
-    basePath = window.__NEXT_DATA__?.basePath || '';
+    // TypeScriptエラーを回避するため、any型でキャスト
+    const nextData = (window as any).__NEXT_DATA__;
+    basePath = nextData?.basePath || '';
   } else {
     // サーバーサイドでは環境変数から判定
     basePath = process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : '';
@@ -29,12 +30,13 @@ export function getLink(path: string): string {
 // 画像パス用の関数（Next.jsのbasePath設定を使用）
 export function getImagePath(path: string): string {
   // Next.jsのbasePath設定を使用（next.config.jsで設定）
-  // クライアントサイドでは window.__NEXT_DATA__ から取得
   let basePath = '';
   
   if (typeof window !== 'undefined') {
     // クライアントサイドでは window.__NEXT_DATA__ から basePath を取得
-    basePath = window.__NEXT_DATA__?.basePath || '';
+    // TypeScriptエラーを回避するため、any型でキャスト
+    const nextData = (window as any).__NEXT_DATA__;
+    basePath = nextData?.basePath || '';
   } else {
     // サーバーサイドでは環境変数から判定
     basePath = process.env.NODE_ENV === 'production' ? '/tsukikage-sato' : '';
