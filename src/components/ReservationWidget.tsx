@@ -135,7 +135,7 @@ export default function ReservationWidget() {
         {/* プラン一覧へのリンク */}
         <div className="text-center">
           <Link
-                            href="/Ryokan-HP/plans"
+                            href="/tsukikage-sato/plans"
             className="text-sumi-600 hover:text-sumi-900 text-sm underline transition-colors duration-200"
           >
             宿泊プラン一覧を見る →
