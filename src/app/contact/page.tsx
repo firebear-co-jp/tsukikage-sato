@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -32,6 +32,20 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [recaptchaToken, setRecaptchaToken] = useState('');
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+
+  // reCAPTCHAの読み込み状態を監視
+  useEffect(() => {
+    const checkRecaptcha = () => {
+      if (typeof window.grecaptcha !== 'undefined') {
+        setRecaptchaLoaded(true);
+        console.log('reCAPTCHA is ready');
+      } else {
+        setTimeout(checkRecaptcha, 100);
+      }
+    };
+    checkRecaptcha();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -52,21 +66,38 @@ export default function ContactPage() {
   // reCAPTCHAトークンを取得
   const getRecaptchaToken = async (): Promise<string> => {
     return new Promise((resolve, reject) => {
+      // reCAPTCHAが読み込まれているかチェック
       if (typeof window.grecaptcha === 'undefined') {
-        reject(new Error('reCAPTCHA not loaded'));
+        console.log('reCAPTCHA not loaded, waiting...');
+        // reCAPTCHAが読み込まれるまで待機
+        const checkRecaptcha = () => {
+          if (typeof window.grecaptcha !== 'undefined') {
+            executeRecaptcha();
+          } else {
+            setTimeout(checkRecaptcha, 100);
+          }
+        };
+        checkRecaptcha();
         return;
       }
 
-      window.grecaptcha.ready(async () => {
-        try {
-          const token = await window.grecaptcha.execute('6LdZxqUrAAAAABTwwYLrQQjbhNRMVLWKD6IBQKkV', {
-            action: 'contact_form'
-          });
-          resolve(token);
-        } catch (error) {
-          reject(error);
-        }
-      });
+      executeRecaptcha();
+
+      function executeRecaptcha() {
+        window.grecaptcha.ready(async () => {
+          try {
+            console.log('Executing reCAPTCHA...');
+            const token = await window.grecaptcha.execute('6LdZxqUrAAAAABTwwYLrQQjbhNRMVLWKD6IBQKkV', {
+              action: 'contact_form'
+            });
+            console.log('reCAPTCHA token obtained');
+            resolve(token);
+          } catch (error) {
+            console.error('reCAPTCHA execution error:', error);
+            reject(new Error('reCAPTCHA検証に失敗しました。再度お試しください。'));
+          }
+        });
+      }
     });
   };
 
@@ -134,7 +165,20 @@ export default function ContactPage() {
     } catch (error) {
       console.error('送信エラー:', error);
       setSubmitStatus('error');
-      setErrorMessage(error instanceof Error ? error.message : '送信に失敗しました。しばらく時間をおいて再度お試しください。');
+      
+      // エラーメッセージをより詳細に
+      let errorMsg = '送信に失敗しました。しばらく時間をおいて再度お試しください。';
+      if (error instanceof Error) {
+        if (error.message.includes('reCAPTCHA')) {
+          errorMsg = 'セキュリティチェックに失敗しました。ページを再読み込みしてから再度お試しください。';
+        } else if (error.message.includes('ネットワーク')) {
+          errorMsg = 'ネットワークエラーが発生しました。インターネット接続を確認してから再度お試しください。';
+        } else {
+          errorMsg = error.message;
+        }
+      }
+      
+      setErrorMessage(errorMsg);
       setIsSubmitting(false);
     }
   };
@@ -340,7 +384,7 @@ export default function ContactPage() {
               <div className="text-center">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !recaptchaLoaded}
                   className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cha-600 to-cha-700 text-white font-medium rounded-full hover:from-cha-700 hover:to-cha-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   {isSubmitting ? (
@@ -351,6 +395,8 @@ export default function ContactPage() {
                       </svg>
                       送信中...
                     </>
+                  ) : !recaptchaLoaded ? (
+                    '読み込み中...'
                   ) : (
                     '送信する'
                   )}
@@ -407,6 +453,12 @@ export default function ContactPage() {
         src="https://www.google.com/recaptcha/api.js?render=6LdZxqUrAAAAABTwwYLrQQjbhNRMVLWKD6IBQKkV"
         async
         defer
+        onLoad={() => {
+          console.log('reCAPTCHA script loaded');
+        }}
+        onError={() => {
+          console.error('reCAPTCHA script failed to load');
+        }}
       />
     </main>
   );
