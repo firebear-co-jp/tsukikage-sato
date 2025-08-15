@@ -125,6 +125,11 @@ export default function ContactPage() {
         recaptchaToken: token // reCAPTCHAトークンを追加
       };
       
+      console.log('Sending data to GAS:', {
+        ...data,
+        recaptchaToken: token ? `${token.substring(0, 20)}...` : 'null' // トークンの一部のみ表示
+      });
+      
       // JSONP方式でリクエスト
       const callback = 'handleContactResponse';
       const url = `${scriptUrl}?callback=${callback}&data=${encodeURIComponent(JSON.stringify(data))}`;
