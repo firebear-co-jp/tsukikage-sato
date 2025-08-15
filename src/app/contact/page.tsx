@@ -112,8 +112,8 @@ export default function ContactPage() {
       const token = await getRecaptchaToken();
       setRecaptchaToken(token);
       
-      // デバッグ版のGoogle Apps Scriptを使用
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbzVGc1DLlvWGIomh_I4f7i5rCnC9DsxIrIOTdg8_0jn8k_ZEfHfW1msjAxsuuNa16qL/exec';
+      // reCAPTCHA一時無効版のGoogle Apps Scriptを使用
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycby4txWazLTu7Voo0QLXSNw-44m4EVg_zVPCB8T_GvG1mYA9sMONKWJrzzgz9SZrxEiX/exec';
       
       // データを準備
       const data = {
