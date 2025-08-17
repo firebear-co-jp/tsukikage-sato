@@ -139,6 +139,14 @@ export const planImages = {
       animeImages.onsen.relaxation,
     ],
   },
+  'valley-view': {
+    main: animeImages.rooms.valleyView,
+    gallery: [
+      animeImages.rooms.valleyView,
+      animeImages.sightseeing.valley,
+      animeImages.cuisine.kaisekiCourse,
+    ],
+  },
   'premium-suite': {
     main: animeImages.plans.premiumLuxury,
     gallery: [

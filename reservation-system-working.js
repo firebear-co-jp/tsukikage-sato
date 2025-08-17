@@ -8,7 +8,7 @@ const CONFIG = {
   calendarId: 'c_6a49d730dee64c602807be7781dff924de54ebbcaf5eef1f81db7fe13b40672b@group.calendar.google.com',
   
   // Google Sheets ID（動作確認済み）
-  spreadsheetId: '1Z5xhozUeeWcqbSO3QNvCt92AAgkWc5BRbYZObqOJLLw',
+  spreadsheetId: '1S8Vj0FfXNdZvHkmuCfiJenTHMy9FWG10KHSoIFLCXUIT_45wlh3bi4RD',
   
   // 部屋設定
   // 各部屋のカレンダーIDを設定してください
@@ -16,30 +16,37 @@ const CONFIG = {
     'washitsu-a': {
       name: '和室A',
       capacity: 2,
-      price: 15000,
+      price: 28000,
       // 和室A専用カレンダーのID
-      calendarId: 'c_d7a00081dad30a339865552ea1ed1af4340ba448757a049eae595c8d5da68e79@group.calendar.google.com'
+      calendarId: 'c_3712af58493828576ce36c3cde1985e1888507ddaa2984229a78a1469ac6133e@group.calendar.google.com'
     },
     'washitsu-b': {
       name: '和室B',
       capacity: 4,
-      price: 25000,
+      price: 35000,
       // 和室B専用カレンダーのID
-      calendarId: 'c_7b9e2504e93b464880f6ec6d28f4ff3cb92c8b1bfda747362eaf74452f6df400@group.calendar.google.com'
+      calendarId: 'c_09192e38b8984f6b7bc97007a77deafb23b356ab1b71f64a8aaf05aa43f592eb@group.calendar.google.com'
     },
-    'special': {
+    'washitsu-c': {
+      name: '和室C',
+      capacity: 3,
+      price: 42000,
+      // 和室C専用カレンダーのID
+      calendarId: 'c_6b043093441278145825b36b5b33d0f1ecdbc3613779ea1cf23aefd11dea6221@group.calendar.google.com'
+    },
+    'onsen-room': {
+      name: '露天風呂付き客室',
+      capacity: 3,
+      price: 45000,
+      // 露天風呂付き客室専用カレンダーのID
+      calendarId: 'c_d546eef47940954aedd5cf366effe8949104c78801e997bf1dcbdd443dabe245@group.calendar.google.com'
+    },
+    'special-room': {
       name: '特別室',
-      capacity: 2,
-      price: 30000,
+      capacity: 4,
+      price: 65000,
       // 特別室専用カレンダーのID
-      calendarId: 'c_36fee39dbc5234aebf6fd6f103003b671d1fd73292230a67f821db9eeaff5c64@group.calendar.google.com'
-    },
-    'family': {
-      name: '家族室',
-      capacity: 6,
-      price: 40000,
-      // 家族室専用カレンダーのID
-      calendarId: 'c_29a693c338b3dd1ecfe0130fb3a3749b00ced420df6d601ab0b9b0e419363155@group.calendar.google.com'
+      calendarId: 'c_070721cac63671e89b541be95c3c22a9d365d57a77b6349de4f42bc054070078@group.calendar.google.com'
     }
   }
 };

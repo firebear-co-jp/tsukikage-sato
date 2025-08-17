@@ -24,14 +24,34 @@ export default function RoomsPage() {
 
   const roomTypes = [
     {
-      name: '和室',
+      name: '和室A',
       description: '伝統的な和室で、日本の美意識と機能性を兼ね備えた空間です。',
       image: animeImages.rooms.tatamiInterior,
       fallback: fallbackImages.ryokan,
-      capacity: '2〜4名様',
+      capacity: '2名様',
+      size: '8畳',
+      price: '28,000円〜',
+      features: ['8畳の落ち着いた空間', '渓谷を望む景色', '和風の内装'],
+    },
+    {
+      name: '和室B',
+      description: '広々とした和室で、家族やグループでのご利用に最適です。',
+      image: animeImages.rooms.tatamiInterior,
+      fallback: fallbackImages.ryokan,
+      capacity: '4名様',
       size: '10畳',
-      price: '32,000円〜',
-      features: ['10畳の広々とした空間', '渓谷を望む景色', '和風の内装'],
+      price: '35,000円〜',
+      features: ['10畳の広々とした空間', '渓谷を望む景色', '家族向けアメニティ'],
+    },
+    {
+      name: '和室C',
+      description: '渓谷を一望できる特別な和室で、至福の時間をお過ごしください。',
+      image: animeImages.rooms.valleyView,
+      fallback: fallbackImages.ryokan,
+      capacity: '3名様',
+      size: '12畳',
+      price: '42,000円〜',
+      features: ['渓谷を一望', '12畳の広々とした空間', '特別な内装'],
     },
     {
       name: '露天風呂付き客室',
