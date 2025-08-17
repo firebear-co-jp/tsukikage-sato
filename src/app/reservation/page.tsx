@@ -78,7 +78,7 @@ export default function ReservationPage() {
     setIsSearching(true);
     
     try {
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbzyoFP_mMHDdYucgcWUVIZP9bpL1tZXCRIaLF2eLpmL-i23ysC0brCB3tbs_O3FKr8qOw/exec'; // 予約システム用のURL
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbyFl0GAJLXHMP7Ob6vhEpo0lwVlEWk-NhMAhvQ78kGVAAP8j0J8XMsNyi9nwMV87LtncQ/exec'; // 予約システム用のURL
       const callback = 'handleSearchResponse';
       
       const data = {
@@ -141,7 +141,7 @@ export default function ReservationPage() {
     setIsReserving(true);
     
     try {
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbzyoFP_mMHDdYucgcWUVIZP9bpL1tZXCRIaLF2eLpmL-i23ysC0brCB3tbs_O3FKr8qOw/exec'; // 予約システム用のURL（新しいデプロイ後のURLに更新してください）
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbyFl0GAJLXHMP7Ob6vhEpo0lwVlEWk-NhMAhvQ78kGVAAP8j0J8XMsNyi9nwMV87LtncQ/exec'; // 予約システム用のURL
       const callback = 'handleReservationResponse';
       
       const data = {
