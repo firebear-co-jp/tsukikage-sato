@@ -78,13 +78,13 @@ export default function ReservationPage() {
     setIsSearching(true);
     
     try {
-      const scriptUrl = 'https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzyoFP_mMHDdYucgcWUVIZP9bpL1tZXCRIaLF2eLpmL-i23ysC0brCB3tbs_O3FKr8qOw/exec/exec'; // 予約システム用のURL（新しいデプロイ後のURLに更新してください）
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbzyoFP_mMHDdYucgcWUVIZP9bpL1tZXCRIaLF2eLpmL-i23ysC0brCB3tbs_O3FKr8qOw/exec'; // 予約システム用のURL
       const callback = 'handleSearchResponse';
       
       const data = {
         action: 'search',
-        checkIn: searchData.checkIn,
-        checkOut: searchData.checkOut,
+        checkin: searchData.checkIn,
+        checkout: searchData.checkOut,
         guests: searchData.guests
       };
       
@@ -146,8 +146,8 @@ export default function ReservationPage() {
       
       const data = {
         action: 'reserve',
-        checkIn: searchData.checkIn,
-        checkOut: searchData.checkOut,
+        checkin: searchData.checkIn,
+        checkout: searchData.checkOut,
         roomId: selectedRoom.id,
         guests: searchData.guests,
         adults: searchData.adults,

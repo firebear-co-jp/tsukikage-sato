@@ -119,8 +119,8 @@ function createJsonResponse(callback, content) {
 
 // 空室検索ハンドラー
 function handleSearch(data, callback) {
-  const checkInDate = new Date(data.checkIn);
-  const checkOutDate = new Date(data.checkOut);
+  const checkInDate = new Date(data.checkin);
+  const checkOutDate = new Date(data.checkout);
   const guests = parseInt(data.guests);
 
   if (isNaN(checkInDate.getTime()) || isNaN(checkOutDate.getTime()) || checkInDate >= checkOutDate) {
@@ -157,8 +157,8 @@ function handleSearch(data, callback) {
   return createJsonResponse(callback, {
     success: true,
     availableRooms: availableRooms,
-    checkIn: data.checkIn,
-    checkOut: data.checkOut,
+    checkIn: data.checkin,
+    checkOut: data.checkout,
     guests: guests
   });
 }
@@ -185,8 +185,8 @@ function handleReserve(data, callback) {
     
     console.log('Room found:', room.name);
 
-    const checkInDate = new Date(data.checkIn);
-    const checkOutDate = new Date(data.checkOut);
+    const checkInDate = new Date(data.checkin);
+    const checkOutDate = new Date(data.checkout);
     const guests = parseInt(data.guests);
     const adults = parseInt(data.adults);
     const children = parseInt(data.children);
