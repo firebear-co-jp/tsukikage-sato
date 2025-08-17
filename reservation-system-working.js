@@ -119,11 +119,24 @@ function createJsonResponse(callback, content) {
 
 // 空室検索ハンドラー
 function handleSearch(data, callback) {
+  console.log('=== SEARCH START ===');
+  console.log('Received data:', data);
+  
   const checkInDate = new Date(data.checkin);
   const checkOutDate = new Date(data.checkout);
   const guests = parseInt(data.guests);
 
+  console.log('Parsed dates:');
+  console.log('  checkInDate:', checkInDate);
+  console.log('  checkOutDate:', checkOutDate);
+  console.log('  checkInDate.getTime():', checkInDate.getTime());
+  console.log('  checkOutDate.getTime():', checkOutDate.getTime());
+  console.log('  isNaN(checkInDate.getTime()):', isNaN(checkInDate.getTime()));
+  console.log('  isNaN(checkOutDate.getTime()):', isNaN(checkOutDate.getTime()));
+  console.log('  checkInDate >= checkOutDate:', checkInDate >= checkOutDate);
+
   if (isNaN(checkInDate.getTime()) || isNaN(checkOutDate.getTime()) || checkInDate >= checkOutDate) {
+    console.log('Date validation failed');
     return createJsonResponse(callback, { success: false, message: 'Invalid check-in/check-out dates.' });
   }
   if (isNaN(guests) || guests <= 0) {
