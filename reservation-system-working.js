@@ -122,8 +122,11 @@ function handleSearch(data, callback) {
   console.log('=== SEARCH START ===');
   console.log('Received data:', data);
   
-  const checkInDate = new Date(data.checkin);
-  const checkOutDate = new Date(data.checkout);
+  // 日付文字列を適切な形式に変換
+  const checkInStr = data.checkin + 'T00:00:00';
+  const checkOutStr = data.checkout + 'T00:00:00';
+  const checkInDate = new Date(checkInStr);
+  const checkOutDate = new Date(checkOutStr);
   const guests = parseInt(data.guests);
 
   console.log('Parsed dates:');
@@ -182,7 +185,21 @@ function handleReserve(data, callback) {
     console.log('=== RESERVATION START ===');
     console.log('Reservation data:', data);
     
-    const sheet = SpreadsheetApp.openById(CONFIG.spreadsheetId).getSheetByName('予約');
+    console.log('Attempting to open spreadsheet with ID:', CONFIG.spreadsheetId);
+    
+    let spreadsheet;
+    try {
+      spreadsheet = SpreadsheetApp.openById(CONFIG.spreadsheetId);
+      console.log('Spreadsheet opened successfully');
+    } catch (spreadsheetError) {
+      console.error('Failed to open spreadsheet:', spreadsheetError);
+      return createJsonResponse(callback, { 
+        success: false, 
+        message: 'Failed to access reservation spreadsheet. Please check spreadsheet ID and permissions.' 
+      });
+    }
+    
+    const sheet = spreadsheet.getSheetByName('予約');
     if (!sheet) {
       console.error('Reservation sheet not found');
       return createJsonResponse(callback, { success: false, message: 'Reservation sheet not found.' });
@@ -198,8 +215,11 @@ function handleReserve(data, callback) {
     
     console.log('Room found:', room.name);
 
-    const checkInDate = new Date(data.checkin);
-    const checkOutDate = new Date(data.checkout);
+    // 日付文字列を適切な形式に変換
+    const checkInStr = data.checkin + 'T00:00:00';
+    const checkOutStr = data.checkout + 'T00:00:00';
+    const checkInDate = new Date(checkInStr);
+    const checkOutDate = new Date(checkOutStr);
     const guests = parseInt(data.guests);
     const adults = parseInt(data.adults);
     const children = parseInt(data.children);
