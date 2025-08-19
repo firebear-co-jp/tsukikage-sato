@@ -8,7 +8,7 @@ const CONFIG = {
   calendarId: 'c_6a49d730dee64c602807be7781dff924de54ebbcaf5eef1f81db7fe13b40672b@group.calendar.google.com',
   
   // Google Sheets ID（動作確認済み）
-  spreadsheetId: '1S8Vj0FfXNdZvHkmuCfiJenTHMy9FWG10KHSoIFLCXUIT_45wlh3bi4RD',
+  spreadsheetId: '140FbedKeQWmr12PVxkQCgoBMZT9SllHCRxb5jyApkMc',
   
   // 部屋設定
   // 各部屋のカレンダーIDを設定してください
@@ -199,10 +199,17 @@ function handleReserve(data, callback) {
       });
     }
     
-    const sheet = spreadsheet.getSheetByName('予約');
+    // シート名を確認（複数の可能性を試す）
+    let sheet = spreadsheet.getSheetByName('予約');
     if (!sheet) {
-      console.error('Reservation sheet not found');
-      return createJsonResponse(callback, { success: false, message: 'Reservation sheet not found.' });
+      sheet = spreadsheet.getSheetByName('reservation');
+    }
+    if (!sheet) {
+      sheet = spreadsheet.getSheetByName('Reservation');
+    }
+    if (!sheet) {
+      console.error('Reservation sheet not found. Available sheets:', spreadsheet.getSheets().map(s => s.getName()));
+      return createJsonResponse(callback, { success: false, message: 'Reservation sheet not found. Please check sheet name.' });
     }
     
     console.log('Sheet found:', sheet.getName());
@@ -261,28 +268,42 @@ function handleReserve(data, callback) {
     console.log('Calendar event created');
 
     console.log('Adding data to sheet...');
-    // Google Sheetsにデータを記録
+    // Google Sheetsにデータを記録（正しい列構成に修正）
     sheet.appendRow([
-      reservationId,
-      japanTime,
-      Utilities.formatDate(checkInDate, 'Asia/Tokyo', 'yyyy/MM/dd'),
-      Utilities.formatDate(checkOutDate, 'Asia/Tokyo', 'yyyy/MM/dd'),
-      nights,
-      room.name,
-      `${adults}名 (大人), ${children}名 (子供)`,
-      data.name,
-      data.email,
-      data.phone,
-      totalPrice,
-      '予約済み' // ステータス
+      reservationId, // A列: 予約ID
+      japanTime, // B列: 予約日
+      Utilities.formatDate(checkInDate, 'Asia/Tokyo', 'yyyy/MM/dd'), // C列: チェックイン
+      Utilities.formatDate(checkOutDate, 'Asia/Tokyo', 'yyyy/MM/dd'), // D列: チェックアウト
+      nights, // E列: 宿泊日数
+      data.roomId, // F列: 部屋ID
+      room.name, // G列: 部屋名
+      guests, // H列: 宿泊人数
+      adults, // I列: 大人
+      children, // J列: 子供
+      data.name, // K列: お客様名
+      data.phone, // L列: 電話番号
+      data.email, // M列: メールアドレス
+      '予約済み' // N列: ステータス
     ]);
     console.log('Sheet data added');
 
     console.log('Sending emails...');
-    // 予約確認メールを送信
-    sendReservationConfirmationEmail(data, room, checkInDate, checkOutDate, nights, totalPrice, reservationId);
-    sendAdminNotificationEmail(data, room, checkInDate, checkOutDate, nights, totalPrice, reservationId);
-    console.log('Emails sent');
+    try {
+      // 予約確認メールを送信
+      sendReservationConfirmationEmail(data, room, checkInDate, checkOutDate, nights, totalPrice, reservationId);
+      console.log('Customer confirmation email sent');
+    } catch (emailError) {
+      console.error('Failed to send customer email:', emailError);
+    }
+    
+    try {
+      // 管理者通知メールを送信
+      sendAdminNotificationEmail(data, room, checkInDate, checkOutDate, nights, totalPrice, reservationId);
+      console.log('Admin notification email sent');
+    } catch (adminEmailError) {
+      console.error('Failed to send admin email:', adminEmailError);
+    }
+    console.log('Email sending completed');
 
     console.log('=== RESERVATION SUCCESS ===');
     return createJsonResponse(callback, { 
@@ -357,7 +378,7 @@ TEL: 000-0000-0000
 // 管理者通知メール送信
 function sendAdminNotificationEmail(customerData, roomInfo, checkIn, checkOut, nights, totalPrice, reservationId) {
   const adminEmail = 'takayuki.sase@firebear.co.jp'; // 管理者のメールアドレス
-  const subject = `【月影の郷】新しい予約が入りました（予約ID: ${reservationId}）`;
+  const subject = `【月影の郷】新規予約通知 - ${customerData.name}様 (ID: ${reservationId})`;
   const body = `
 新しいご予約が入りました。
 
@@ -383,6 +404,6 @@ function sendAdminNotificationEmail(customerData, roomInfo, checkIn, checkOut, n
     to: adminEmail,
     subject: subject,
     body: body,
-    name: customerData.name // 送信者名をお客様名にする
+    name: '月影の郷 予約システム' // 送信者名を固定
   });
 }

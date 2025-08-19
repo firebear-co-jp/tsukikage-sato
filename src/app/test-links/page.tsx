@@ -22,8 +22,8 @@ export default function TestLinksPage() {
         <div>
           <h2 className="text-lg font-semibold">画像パス:</h2>
           <ul className="list-disc list-inside space-y-2 mt-2">
-            <li>Contact Hero: /images/anime-style/contact-hero.png</li>
-            <li>Main Ryokan: /images/anime-style/main-ryokan-night.png</li>
+            <li>Contact Hero: /images/anime-style/contact-hero.webp</li>
+            <li>Main Ryokan: /images/anime-style/main-ryokan-night.webp</li>
           </ul>
         </div>
         <div>
