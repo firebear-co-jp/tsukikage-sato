@@ -91,6 +91,114 @@ export default function ReservationPage() {
   const [reservationStatus, setReservationStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // 入力値検証関数
+  const validateDates = (checkIn: string, checkOut: string): string | null => {
+    const today = new Date().toISOString().split('T')[0];
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+    const maxAdvanceDays = 365; // 最大1年前
+    
+    if (checkIn < today) {
+      return '過去の日付は選択できません';
+    }
+    
+    if (checkOut <= checkIn) {
+      return 'チェックアウト日はチェックイン日より後にしてください';
+    }
+    
+    const advanceDays = (checkInDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24);
+    if (advanceDays > maxAdvanceDays) {
+      return '予約は1年前まで可能です';
+    }
+    
+    const stayDays = (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24);
+    if (stayDays > 30) {
+      return '宿泊日数は30日以内にしてください';
+    }
+    
+    return null; // エラーなし
+  };
+
+  const validateEmail = (email: string): string | null => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    if (!email.trim()) {
+      return 'メールアドレスを入力してください';
+    }
+    
+    if (!emailRegex.test(email)) {
+      return '正しいメールアドレスを入力してください';
+    }
+    
+    if (email.length > 255) {
+      return 'メールアドレスが長すぎます';
+    }
+    
+    return null; // エラーなし
+  };
+
+  const validatePhone = (phone: string): string | null => {
+    const phoneRegex = /^[0-9-+()\s]+$/;
+    const digitsOnly = phone.replace(/[^0-9]/g, '');
+    
+    if (!phone.trim()) {
+      return '電話番号を入力してください';
+    }
+    
+    if (!phoneRegex.test(phone)) {
+      return '正しい電話番号を入力してください';
+    }
+    
+    if (digitsOnly.length < 10 || digitsOnly.length > 15) {
+      return '電話番号は10〜15桁で入力してください';
+    }
+    
+    return null; // エラーなし
+  };
+
+  const validateName = (name: string): string | null => {
+    if (!name.trim()) {
+      return 'お名前を入力してください';
+    }
+    
+    if (name.length < 2 || name.length > 50) {
+      return 'お名前は2〜50文字で入力してください';
+    }
+    
+    const nameRegex = /^[a-zA-Z\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\s　]+$/;
+    if (!nameRegex.test(name)) {
+      return '正しいお名前を入力してください';
+    }
+    
+    return null; // エラーなし
+  };
+
+  const validateGuests = (adults: number, children: number): string | null => {
+    const total = adults + children;
+    
+    if (adults < 1) {
+      return '大人は1名以上で入力してください';
+    }
+    
+    if (adults > 8) {
+      return '大人は8名以下で入力してください';
+    }
+    
+    if (children < 0) {
+      return '子供の人数は0以上で入力してください';
+    }
+    
+    if (children > 6) {
+      return '子供は6名以下で入力してください';
+    }
+    
+    if (total > 8) {
+      return '宿泊人数は8名以下で入力してください';
+    }
+    
+    return null; // エラーなし
+  };
+
   // reCAPTCHAトークンを取得
   const getRecaptchaToken = async (action: string): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -131,13 +239,22 @@ export default function ReservationPage() {
 
   // 空室検索
   const searchAvailability = async () => {
-    if (!searchData.checkIn || !searchData.checkOut) {
-      alert('チェックイン・チェックアウト日を選択してください');
+    // 入力値検証
+    const dateValidation = validateDates(searchData.checkIn, searchData.checkOut);
+    if (dateValidation) {
+      setErrorMessage(dateValidation);
+      return;
+    }
+
+    const guestValidation = validateGuests(searchData.adults, searchData.children);
+    if (guestValidation) {
+      setErrorMessage(guestValidation);
       return;
     }
 
     console.log('Starting search with data:', searchData); // デバッグ用
     setIsSearching(true);
+    setErrorMessage(''); // エラーメッセージをクリア
     
     try {
       // reCAPTCHAトークンを取得
@@ -199,16 +316,31 @@ export default function ReservationPage() {
   // 予約作成
   const createReservation = async () => {
     if (!selectedRoom) {
-      alert('部屋を選択してください');
+      setErrorMessage('部屋を選択してください');
       return;
     }
 
-    if (!reservationData.name || !reservationData.phone || !reservationData.email) {
-      alert('お客様情報を入力してください');
+    // 入力値検証
+    const nameValidation = validateName(reservationData.name);
+    if (nameValidation) {
+      setErrorMessage(nameValidation);
+      return;
+    }
+
+    const emailValidation = validateEmail(reservationData.email);
+    if (emailValidation) {
+      setErrorMessage(emailValidation);
+      return;
+    }
+
+    const phoneValidation = validatePhone(reservationData.phone);
+    if (phoneValidation) {
+      setErrorMessage(phoneValidation);
       return;
     }
 
     setIsReserving(true);
+    setErrorMessage(''); // エラーメッセージをクリア
     
     try {
       // reCAPTCHAトークンを取得
@@ -289,6 +421,14 @@ export default function ReservationPage() {
       children,
       guests: total
     }));
+    
+    // リアルタイム検証
+    const guestValidation = validateGuests(adults, children);
+    if (guestValidation) {
+      setErrorMessage(guestValidation);
+    } else {
+      setErrorMessage(''); // エラーをクリア
+    }
   };
 
   return (
@@ -391,6 +531,18 @@ export default function ReservationPage() {
                 </select>
               </div>
             </div>
+
+            {/* エラーメッセージ表示 */}
+            {errorMessage && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                  <p className="text-red-700 font-medium">{errorMessage}</p>
+                </div>
+              </div>
+            )}
 
             <div className="text-center">
               <button
@@ -543,7 +695,16 @@ export default function ReservationPage() {
                   <input
                     type="text"
                     value={reservationData.name}
-                    onChange={(e) => setReservationData(prev => ({ ...prev, name: e.target.value }))}
+                    onChange={(e) => {
+                      setReservationData(prev => ({ ...prev, name: e.target.value }));
+                      // リアルタイム検証
+                      const nameValidation = validateName(e.target.value);
+                      if (nameValidation) {
+                        setErrorMessage(nameValidation);
+                      } else {
+                        setErrorMessage('');
+                      }
+                    }}
                     className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                     placeholder="山田 太郎"
                   />
@@ -555,7 +716,16 @@ export default function ReservationPage() {
                   <input
                     type="tel"
                     value={reservationData.phone}
-                    onChange={(e) => setReservationData(prev => ({ ...prev, phone: e.target.value }))}
+                    onChange={(e) => {
+                      setReservationData(prev => ({ ...prev, phone: e.target.value }));
+                      // リアルタイム検証
+                      const phoneValidation = validatePhone(e.target.value);
+                      if (phoneValidation) {
+                        setErrorMessage(phoneValidation);
+                      } else {
+                        setErrorMessage('');
+                      }
+                    }}
                     className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                     placeholder="000-0000-0000"
                   />
@@ -569,11 +739,32 @@ export default function ReservationPage() {
                 <input
                   type="email"
                   value={reservationData.email}
-                  onChange={(e) => setReservationData(prev => ({ ...prev, email: e.target.value }))}
+                  onChange={(e) => {
+                    setReservationData(prev => ({ ...prev, email: e.target.value }));
+                    // リアルタイム検証
+                    const emailValidation = validateEmail(e.target.value);
+                    if (emailValidation) {
+                      setErrorMessage(emailValidation);
+                    } else {
+                      setErrorMessage('');
+                    }
+                  }}
                   className="w-full px-4 py-3 border border-sumi-300 rounded-lg focus:ring-2 focus:ring-cha-500 focus:border-transparent transition-all duration-200 text-sumi-900"
                   placeholder="example@email.com"
                 />
               </div>
+
+              {/* エラーメッセージ表示 */}
+              {errorMessage && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                    <p className="text-red-700 font-medium">{errorMessage}</p>
+                  </div>
+                </div>
+              )}
 
               <div className="text-center">
                 <button
