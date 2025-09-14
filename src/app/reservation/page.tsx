@@ -5,6 +5,16 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { animeImages } from '@/config/images';
 
+// reCAPTCHAの型定義
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
+
 interface Room {
   id: string;
   name: string;
@@ -33,6 +43,7 @@ export default function ReservationPage() {
   const [searchResult, setSearchResult] = useState<SearchResult | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   
   // URLパラメータを読み取って初期値を設定
   useEffect(() => {
@@ -58,6 +69,19 @@ export default function ReservationPage() {
   useEffect(() => {
     console.log('Selected room changed:', selectedRoom);
   }, [selectedRoom]);
+
+  // reCAPTCHAの読み込み状態を監視
+  useEffect(() => {
+    const checkRecaptcha = () => {
+      if (typeof window.grecaptcha !== 'undefined') {
+        setRecaptchaLoaded(true);
+        console.log('reCAPTCHA is ready');
+      } else {
+        setTimeout(checkRecaptcha, 100);
+      }
+    };
+    checkRecaptcha();
+  }, []);
   const [reservationData, setReservationData] = useState({
     name: '',
     phone: '',
@@ -66,6 +90,44 @@ export default function ReservationPage() {
   const [isReserving, setIsReserving] = useState(false);
   const [reservationStatus, setReservationStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+
+  // reCAPTCHAトークンを取得
+  const getRecaptchaToken = async (action: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      // reCAPTCHAが読み込まれているかチェック
+      if (typeof window.grecaptcha === 'undefined') {
+        console.log('reCAPTCHA not loaded, waiting...');
+        // reCAPTCHAが読み込まれるまで待機
+        const checkRecaptcha = () => {
+          if (typeof window.grecaptcha !== 'undefined') {
+            executeRecaptcha();
+          } else {
+            setTimeout(checkRecaptcha, 100);
+          }
+        };
+        checkRecaptcha();
+        return;
+      }
+
+      executeRecaptcha();
+
+      function executeRecaptcha() {
+        window.grecaptcha.ready(async () => {
+          try {
+            console.log('Executing reCAPTCHA...');
+            const token = await window.grecaptcha.execute('6LdZxqUrAAAAABTwwYLrQQjbhNRMVLWKD6IBQKkV', {
+              action: action
+            });
+            console.log('reCAPTCHA token obtained');
+            resolve(token);
+          } catch (error) {
+            console.error('reCAPTCHA execution error:', error);
+            reject(new Error('reCAPTCHA検証に失敗しました。再度お試しください。'));
+          }
+        });
+      }
+    });
+  };
 
   // 空室検索
   const searchAvailability = async () => {
@@ -78,6 +140,9 @@ export default function ReservationPage() {
     setIsSearching(true);
     
     try {
+      // reCAPTCHAトークンを取得
+      const recaptchaToken = await getRecaptchaToken('search_availability');
+      
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbwRJpqvgLnF0PmkVza6juEtlEyM_vqod31P7U3Ka3x1TkeH1EwWDEd0dTtG-AyEO-05/exec'; // 予約システム用のURL
       const callback = 'handleSearchResponse';
       
@@ -85,7 +150,8 @@ export default function ReservationPage() {
         action: 'search',
         checkin: searchData.checkIn,
         checkout: searchData.checkOut,
-        guests: searchData.guests
+        guests: searchData.guests,
+        recaptchaToken: recaptchaToken
       };
       
       console.log('Data object keys:', Object.keys(data)); // デバッグ用
@@ -121,7 +187,11 @@ export default function ReservationPage() {
       document.head.appendChild(script);
       
     } catch (error) {
-      setErrorMessage('検索中にエラーが発生しました');
+      if (error instanceof Error && error.message.includes('reCAPTCHA')) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage('検索中にエラーが発生しました');
+      }
       setIsSearching(false);
     }
   };
@@ -141,6 +211,9 @@ export default function ReservationPage() {
     setIsReserving(true);
     
     try {
+      // reCAPTCHAトークンを取得
+      const recaptchaToken = await getRecaptchaToken('create_reservation');
+      
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbwRJpqvgLnF0PmkVza6juEtlEyM_vqod31P7U3Ka3x1TkeH1EwWDEd0dTtG-AyEO-05/exec'; // 予約システム用のURL
       const callback = 'handleReservationResponse';
       
@@ -154,7 +227,8 @@ export default function ReservationPage() {
         children: searchData.children,
         name: reservationData.name,
         phone: reservationData.phone,
-        email: reservationData.email
+        email: reservationData.email,
+        recaptchaToken: recaptchaToken
       };
       
       console.log('Reservation data:', data); // デバッグ用
@@ -197,7 +271,11 @@ export default function ReservationPage() {
       document.head.appendChild(script);
       
     } catch (error) {
-      setErrorMessage('予約中にエラーが発生しました');
+      if (error instanceof Error && error.message.includes('reCAPTCHA')) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage('予約中にエラーが発生しました');
+      }
       setIsReserving(false);
     }
   };
@@ -317,7 +395,7 @@ export default function ReservationPage() {
             <div className="text-center">
               <button
                 onClick={searchAvailability}
-                disabled={isSearching}
+                disabled={isSearching || !recaptchaLoaded}
                 className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cha-600 to-cha-700 text-white font-medium rounded-full hover:from-cha-700 hover:to-cha-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 {isSearching ? (
@@ -328,6 +406,8 @@ export default function ReservationPage() {
                     </svg>
                     検索中...
                   </>
+                ) : !recaptchaLoaded ? (
+                  '読み込み中...'
                 ) : (
                   '空室を検索'
                 )}
@@ -498,7 +578,7 @@ export default function ReservationPage() {
               <div className="text-center">
                 <button
                   onClick={createReservation}
-                  disabled={isReserving}
+                  disabled={isReserving || !recaptchaLoaded}
                   className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cha-600 to-cha-700 text-white font-medium rounded-full hover:from-cha-700 hover:to-cha-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   {isReserving ? (
@@ -509,6 +589,8 @@ export default function ReservationPage() {
                       </svg>
                       予約中...
                     </>
+                  ) : !recaptchaLoaded ? (
+                    '読み込み中...'
                   ) : (
                     '予約を確定する'
                   )}
@@ -569,6 +651,19 @@ export default function ReservationPage() {
       )}
 
       <Footer />
+      
+      {/* reCAPTCHA スクリプト */}
+      <script
+        src="https://www.google.com/recaptcha/api.js?render=6LdZxqUrAAAAABTwwYLrQQjbhNRMVLWKD6IBQKkV"
+        async
+        defer
+        onLoad={() => {
+          console.log('reCAPTCHA script loaded');
+        }}
+        onError={() => {
+          console.error('reCAPTCHA script failed to load');
+        }}
+      />
     </main>
   );
 }

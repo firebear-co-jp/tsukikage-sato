@@ -1,5 +1,11 @@
-// 月影の郷 総合予約システム - 動作確認済み版
+// 月影の郷 総合予約システム - reCAPTCHA対応版
 // Google Apps Script
+
+// reCAPTCHA設定
+const RECAPTCHA = {
+  secretKey: '6LdZxqUrAAAAAEZNNE3LthWeT6UOwB1Wc1DBPPkw',
+  minScore: 0.5          // 最小スコア（0.0〜1.0）
+};
 
 // 設定
 const CONFIG = {
@@ -122,6 +128,19 @@ function handleSearch(data, callback) {
   console.log('=== SEARCH START ===');
   console.log('Received data:', data);
   
+  // reCAPTCHA検証
+  console.log('Starting reCAPTCHA validation...');
+  const recaptchaResult = validateRecaptcha(data.recaptchaToken);
+  console.log('reCAPTCHA validation result:', recaptchaResult);
+  
+  if (!recaptchaResult) {
+    console.log('reCAPTCHA validation failed');
+    return createJsonResponse(callback, { 
+      success: false, 
+      message: 'reCAPTCHA検証に失敗しました。再度お試しください。' 
+    });
+  }
+  
   // 日付文字列を適切な形式に変換
   const checkInStr = data.checkin + 'T00:00:00';
   const checkOutStr = data.checkout + 'T00:00:00';
@@ -184,6 +203,19 @@ function handleReserve(data, callback) {
   try {
     console.log('=== RESERVATION START ===');
     console.log('Reservation data:', data);
+    
+    // reCAPTCHA検証
+    console.log('Starting reCAPTCHA validation...');
+    const recaptchaResult = validateRecaptcha(data.recaptchaToken);
+    console.log('reCAPTCHA validation result:', recaptchaResult);
+    
+    if (!recaptchaResult) {
+      console.log('reCAPTCHA validation failed');
+      return createJsonResponse(callback, { 
+        success: false, 
+        message: 'reCAPTCHA検証に失敗しました。再度お試しください。' 
+      });
+    }
     
     console.log('Attempting to open spreadsheet with ID:', CONFIG.spreadsheetId);
     
@@ -406,4 +438,62 @@ function sendAdminNotificationEmail(customerData, roomInfo, checkIn, checkOut, n
     body: body,
     name: '月影の郷 予約システム' // 送信者名を固定
   });
+}
+
+// reCAPTCHA検証関数
+function validateRecaptcha(token) {
+  try {
+    console.log('validateRecaptcha called with token:', token ? `${token.substring(0, 20)}...` : 'null');
+    
+    if (!token) {
+      console.log('No reCAPTCHA token provided');
+      return false;
+    }
+    
+    // reCAPTCHA APIに検証リクエストを送信
+    const url = 'https://www.google.com/recaptcha/api/siteverify';
+    const payload = {
+      secret: RECAPTCHA.secretKey,
+      response: token
+    };
+    
+    console.log('Sending reCAPTCHA verification request...');
+    console.log('Secret key length:', RECAPTCHA.secretKey.length);
+    
+    const options = {
+      method: 'POST',
+      payload: payload
+    };
+    
+    const response = UrlFetchApp.fetch(url, options);
+    const responseCode = response.getResponseCode();
+    const responseText = response.getContentText();
+    
+    console.log('reCAPTCHA API response code:', responseCode);
+    console.log('reCAPTCHA API response text:', responseText);
+    
+    if (responseCode !== 200) {
+      console.log('reCAPTCHA API returned non-200 status code');
+      return false;
+    }
+    
+    const result = JSON.parse(responseText);
+    console.log('Parsed reCAPTCHA result:', result);
+    
+    // 検証結果をチェック
+    if (result.success && result.score >= RECAPTCHA.minScore) {
+      console.log('reCAPTCHA validation successful. Score:', result.score);
+      return true;
+    }
+    
+    console.log('reCAPTCHA validation failed. Success:', result.success, 'Score:', result.score);
+    if (result['error-codes']) {
+      console.log('reCAPTCHA error codes:', result['error-codes']);
+    }
+    return false;
+    
+  } catch (error) {
+    console.error('reCAPTCHA validation error:', error);
+    return false;
+  }
 }
